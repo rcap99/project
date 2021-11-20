@@ -1,6 +1,6 @@
-Link a Trello
+Link Trello
 https://trello.com/b/YGBNhokl/project
 
-Link Product Backlog Google SpreadSheets
+Link Shared Folder
 https://drive.google.com/drive/folders/1h7aIOBaL6qM-WXupIjEcmEPQOny3YpRB?usp=sharing
 
