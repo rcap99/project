@@ -4,6 +4,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectse;
+import java.lang.String.*;
 
 /**
  *
@@ -20,6 +21,11 @@ public class ComplexNumber {
 
     public ComplexNumber() {
           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public ComplexNumber(String s1, String s2){
+     double re=Double.parseDouble(s1);
+     double im=Double.parseDouble(s2);
     }
 
     public double getRe() {
