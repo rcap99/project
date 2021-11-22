@@ -42,6 +42,21 @@ public class ComplexStackTest {
        cstack.swap();
    }
    
+   @Test(expected=EmptyStackException.class)
+   public void testOver(){
+       ComplexNumber c1=new ComplexNumber(1.1,1.1);
+       ComplexNumber c2=new ComplexNumber(2.2,2.2);
+       cstack.push(new ComplexNumber(1.1,1.1));
+       cstack.push(new ComplexNumber(2.2,2.2));
+       cstack.over();
+       assertEquals(c1,cstack.pop());
+       assertEquals(c2,cstack.pop());
+       assertEquals(c1,cstack.pop());
+       assertTrue(cstack.isEmpty());
+       cstack.over();
+   }
+           
+           
    @After 
    public void cleanUp(){
        cstack=null;
