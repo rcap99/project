@@ -15,12 +15,15 @@ public class ComplexStack extends Stack<ComplexNumber>{
     
     
     public void dup(){
-        ComplexNumber b=this.peek();
-        this.push(b);
+        ComplexNumber b=peek();
+        push(b);
     }
     
     public void swap(){
-        
+        ComplexNumber b1=pop();
+        ComplexNumber b2=pop();
+        push(b2);
+        push(b1);
     }
 
 }
