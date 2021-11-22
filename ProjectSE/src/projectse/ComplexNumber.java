@@ -94,18 +94,17 @@ public class ComplexNumber {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(ComplexNumber c2) {
+        if (this.re == c2.re && this.im==c2.im) {
             return true;
         }
-        if (obj == null) {
+        if (c2 == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != c2.getClass()) {
             return false;
         }
-        final ComplexNumber other = (ComplexNumber) obj;
+        final ComplexNumber other = (ComplexNumber) c2;
         return true;
     }
       
