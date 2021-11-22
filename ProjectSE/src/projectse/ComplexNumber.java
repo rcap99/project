@@ -62,7 +62,7 @@ public class ComplexNumber {
         return Math.atan2(im, re);
     }
      
-    //adding two complex numbers 
+    //add two complex numbers 
     public ComplexNumber add(ComplexNumber c2){
         ComplexNumber c1=this;  //invoking object
         double real = c1.re + c2.re;
@@ -70,10 +70,44 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }     
      
+    //subtract two complex numbers
     public ComplexNumber subtract(ComplexNumber c2){
         ComplexNumber c1=this;  //invoking object
         double real = c1.re - c2.re;
         double imag = c1.im - c2.im;
         return new ComplexNumber(real, imag);
      }
+    
+    //multiplicate two complex numbers
+      public ComplexNumber multiplication(ComplexNumber c2) {
+        ComplexNumber c1 = this;
+        double real = c1.re * c2.re - c1.im * c2.im;
+        double imag = c1.re * c2.im + c1.im * c2.re;
+        return new ComplexNumber(real, imag);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.re) ^ (Double.doubleToLongBits(this.re) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.im) ^ (Double.doubleToLongBits(this.im) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ComplexNumber other = (ComplexNumber) obj;
+        return true;
+    }
+      
+    
 }
