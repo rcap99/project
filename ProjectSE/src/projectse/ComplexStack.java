@@ -8,5 +8,19 @@ import java.util.Stack;
 
 
 public class ComplexStack extends Stack<ComplexNumber>{
+
+    public ComplexStack() {
+        super();
+    }
     
+    
+    public void dup(){
+        ComplexNumber b=this.peek();
+        this.push(b);
+    }
+    
+    public void swap(){
+        
+    }
+
 }
