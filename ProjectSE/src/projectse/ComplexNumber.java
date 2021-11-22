@@ -5,6 +5,8 @@
  */
 package projectse;
 import java.lang.String.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -85,6 +87,7 @@ public class ComplexNumber {
         double imag = c1.re * c2.im + c1.im * c2.re;
         return new ComplexNumber(real, imag);
     }
+      
 
     @Override
     public int hashCode() {
@@ -93,8 +96,10 @@ public class ComplexNumber {
         hash = 79 * hash + (int) (Double.doubleToLongBits(this.im) ^ (Double.doubleToLongBits(this.im) >>> 32));
         return hash;
     }
-
+    
+    
     public boolean equals(ComplexNumber c2) {
+        ComplexNumber c1= this;
         if (this.re == c2.re && this.im==c2.im) {
             return true;
         }
@@ -107,6 +112,9 @@ public class ComplexNumber {
         final ComplexNumber other = (ComplexNumber) c2;
         return true;
     }
-      
     
+      
+    public StringProperty complexProperty(){
+      return new SimpleStringProperty(this.toString());
+    }
 }
