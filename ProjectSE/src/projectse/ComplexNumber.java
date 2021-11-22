@@ -88,7 +88,26 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }
       
-
+     // return a new Complex object whose value is the reciprocal of this
+    public ComplexNumber reciprocal() {
+        double scale = re*re + im*im;
+        return new ComplexNumber(re / scale, -im / scale);
+    }
+    
+     // return a new Complex object whose value is (this * b)
+    public ComplexNumber times(ComplexNumber b) {
+        ComplexNumber a = this;
+        double real = a.re * b.re - a.im * b.im;
+        double imag = a.re * b.im + a.im * b.re;
+        return new ComplexNumber(real, imag);
+    }
+    
+      //division between two complex numbers
+    public ComplexNumber divides(ComplexNumber c2) {
+        ComplexNumber c1 = this;
+        return c1.times(c2.reciprocal());
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -96,23 +115,6 @@ public class ComplexNumber {
         hash = 79 * hash + (int) (Double.doubleToLongBits(this.im) ^ (Double.doubleToLongBits(this.im) >>> 32));
         return hash;
     }
-    
-    /*
-    public boolean equals(ComplexNumber c2) {
-        ComplexNumber c1= this;
-        if (this.re == c2.re && this.im==c2.im) {
-            return true;
-        }
-        if (c2 == null) {
-            return false;
-        }
-        if (getClass() != c2.getClass()) {
-            return false;
-        }
-        final ComplexNumber other = (ComplexNumber) c2;
-        return true;
-    }
-    */
 
     @Override
     public boolean equals(Object obj) {
