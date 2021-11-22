@@ -36,5 +36,20 @@ public class ComplexStack extends Stack<ComplexNumber>{
         push(b1);
         push(b2);
     }
-
+    
+    public void over()throws EmptyStackException{
+        if(this.isEmpty()){
+            throw new EmptyStackException();
+        }
+        ComplexNumber last=pop();
+        if(this.isEmpty()){
+            throw new EmptyStackException();
+        }
+        ComplexNumber secondlast=pop();
+        push(secondlast);
+        push(last);
+        push(secondlast);
+    }
+    
+    
 }
