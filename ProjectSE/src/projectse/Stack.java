@@ -9,10 +9,10 @@ public interface Stack<E> {
     
     public boolean isFull();
     public boolean isEmpty();
-    public void push(E e);
-    public E pop();
-    public E top();
+    public void push(E e) throws FullStackException;
+    public E pop()throws EmptyStackException;
+    public E top()throws EmptyStackException;
     public int size();
     public int length();
-    
+    public void incrementSize(int newSize);
 }
