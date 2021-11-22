@@ -15,7 +15,7 @@ public class MemoryTest {
         ComplexNumber z = new ComplexNumber(2.4,3.7); 
         ComplexStack cs = new ComplexStack();
         Memory m = new Memory(cs);
-        cs.add(z);
+        cs.push(z);
         m.saveNumberInMemory("a");
         assertEquals(z, m.getNumberFromMemory("a"));
     }
@@ -23,24 +23,28 @@ public class MemoryTest {
     public void testIncrementNumberInMemory(){
         ComplexNumber z = new ComplexNumber(2.4,3.7); 
         ComplexNumber x = new ComplexNumber(1.1,0.3);
+        ComplexNumber y = new ComplexNumber(2.4,3.6);
         ComplexStack cs = new ComplexStack();
         Memory m = new Memory(cs);
-        cs.add(z);
+        cs.push(z);
         m.saveNumberInMemory("a");
-        cs.add(x);
+        cs.push(x);
         m.incrementNumberFromMemory("a");
         assertTrue(z.add(x).equals(m.getNumberFromMemory("a")));
+        assertFalse(z.add(y).equals(m.getNumberFromMemory("a")));
     }
     @Test
     public void testDecrementNumberInMemory(){
         ComplexNumber z = new ComplexNumber(2.4,3.7); 
         ComplexNumber x = new ComplexNumber(1.1,0.7);
+        ComplexNumber y = new ComplexNumber(2.4,3.6);
         ComplexStack cs = new ComplexStack();
         Memory m = new Memory(cs);
-        cs.add(z);
+        cs.push(z);
         m.saveNumberInMemory("a");
-        cs.add(x);
+        cs.push(x);
         m.decrementNumberFromMemory("a");
         assertTrue(z.subtract(x).equals(m.getNumberFromMemory("a")));
+        assertFalse(z.subtract(y).equals(m.getNumberFromMemory("a")));
     }
 }

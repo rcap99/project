@@ -60,4 +60,11 @@ public class ComplexStack extends Stack<ComplexNumber>{
         
     }
     
+    public void drop() throws EmptyStackException{
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+        pop();
+    }
+    
 }
