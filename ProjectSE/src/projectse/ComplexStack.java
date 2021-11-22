@@ -4,7 +4,9 @@
  */
 package projectse;
 
+import java.util.Stack;
 
-public class ComplexStack extends StackBase<ComplexNumber>{
+
+public class ComplexStack extends Stack<ComplexNumber>{
     
 }
