@@ -97,7 +97,7 @@ public class ComplexNumber {
         return hash;
     }
     
-    
+    /*
     public boolean equals(ComplexNumber c2) {
         ComplexNumber c1= this;
         if (this.re == c2.re && this.im==c2.im) {
@@ -110,6 +110,28 @@ public class ComplexNumber {
             return false;
         }
         final ComplexNumber other = (ComplexNumber) c2;
+        return true;
+    }
+    */
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ComplexNumber other = (ComplexNumber) obj;
+        if (Double.doubleToLongBits(this.re) != Double.doubleToLongBits(other.re)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.im) != Double.doubleToLongBits(other.im)) {
+            return false;
+        }
         return true;
     }
     
