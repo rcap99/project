@@ -16,7 +16,7 @@ public class ComplexStack extends Stack<ComplexNumber>{
     
     
     public void dup()throws EmptyStackException{
-        if (this.isEmpty()){
+        if (isEmpty()){
             throw new EmptyStackException();
         }
         ComplexNumber b=peek();
@@ -25,11 +25,11 @@ public class ComplexStack extends Stack<ComplexNumber>{
         
     
     public void swap() throws EmptyStackException{
-        if(this.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
         ComplexNumber b1=pop();
-        if(this.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
         ComplexNumber b2=pop();
@@ -38,11 +38,11 @@ public class ComplexStack extends Stack<ComplexNumber>{
     }
     
     public void over()throws EmptyStackException{
-        if(this.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
         ComplexNumber last=pop();
-        if(this.isEmpty()){
+        if(isEmpty()){
             throw new EmptyStackException();
         }
         ComplexNumber secondlast=pop();
@@ -51,5 +51,13 @@ public class ComplexStack extends Stack<ComplexNumber>{
         push(secondlast);
     }
     
+    @Override
+    public void clear()throws EmptyStackException{
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+        super.clear();
+        
+    }
     
 }

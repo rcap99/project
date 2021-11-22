@@ -12,15 +12,18 @@ import static org.junit.Assert.*;
 public class ComplexStackTest {
     
    private ComplexStack cstack;
+   private ComplexNumber c1;
+   private ComplexNumber c2;
    
    @Before
    public void setUp(){
        cstack=new ComplexStack();
+       c1=new ComplexNumber(1.1,1.1);
+       c2=new ComplexNumber(2.2,2.2);
    }
     
    @Test(expected=EmptyStackException.class)
    public void testDup(){
-       ComplexNumber c1=new ComplexNumber(1.1,1.1);
        cstack.push(new ComplexNumber(1.1,1.1));
        cstack.dup();
        assertEquals(c1, cstack.pop());
@@ -30,9 +33,7 @@ public class ComplexStackTest {
    }
    
    @Test(expected=EmptyStackException.class)
-   public void testSwap(){
-       ComplexNumber c1=new ComplexNumber(1.1,1.1);
-       ComplexNumber c2=new ComplexNumber(2.2,2.2);
+   public void testSwap(){ 
        cstack.push(new ComplexNumber(1.1,1.1));
        cstack.push(new ComplexNumber(2.2,2.2));
        cstack.swap();
@@ -44,8 +45,6 @@ public class ComplexStackTest {
    
    @Test(expected=EmptyStackException.class)
    public void testOver(){
-       ComplexNumber c1=new ComplexNumber(1.1,1.1);
-       ComplexNumber c2=new ComplexNumber(2.2,2.2);
        cstack.push(new ComplexNumber(1.1,1.1));
        cstack.push(new ComplexNumber(2.2,2.2));
        cstack.over();
@@ -55,11 +54,21 @@ public class ComplexStackTest {
        assertTrue(cstack.isEmpty());
        cstack.over();
    }
-           
+   
+   @Test(expected=EmptyStackException.class)
+   public void testClear(){
+       cstack.push(new ComplexNumber(1.1,1.1));
+       cstack.push(new ComplexNumber(2.2,2.2));
+       cstack.clear();
+       assertTrue(cstack.isEmpty());
+       cstack.clear();
+   }        
            
    @After 
    public void cleanUp(){
        cstack=null;
+       c1=null;
+       c2=null;
    }
    
 }
