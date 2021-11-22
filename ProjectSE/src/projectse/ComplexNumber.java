@@ -103,11 +103,57 @@ public class ComplexNumber {
     }
     
       //division between two complex numbers
-    public ComplexNumber divides(ComplexNumber c2) {
+    public ComplexNumber division(ComplexNumber c2) {
         ComplexNumber c1 = this;
         return c1.times(c2.reciprocal());
     }
     
+    //invert the sign of a complex number
+    public ComplexNumber invertSign(ComplexNumber c1){
+    if (c1.re>0) 
+        c1.re=-c1.re;
+    if (c1.im>0)
+        c1.im=-c1.re;
+    if (c1.re<0) 
+        c1.re=+c1.re;
+    if (c1.im<0)
+        c1.im=-c1.re;
+    return c1;
+    }
+    
+    //sqrt of a complexNumber
+    public ComplexNumber sqrt(ComplexNumber c1){
+    ComplexNumber csqrt = new ComplexNumber();
+   double dX, dY, dW, dR;
+
+      if((re == 0) && (im == 0.0)) {
+          csqrt.re = 0.0;
+          csqrt.im = 0.0;
+          return (csqrt);
+      } 
+
+      dX = Math.abs(re);
+      dY = Math.abs(im);
+
+      if( dX >= dY ) {
+          dR = dY/dX;
+          dW = Math.sqrt(dX)*Math.sqrt(0.5*(1.0 + Math.sqrt(1+dR*dR)));
+      } else {
+          dR = dX/dY;
+          dW = Math.sqrt(dY)*Math.sqrt(0.5*(dR + Math.sqrt(1+dR*dR)));
+      }
+
+      if(re >= 0.0) {
+         csqrt.re = dW;
+         csqrt.im = im/(2.0*dW);
+      } else {
+         csqrt.im = (im > 0.0) ? dW : -dW;
+         csqrt.re =  im/(2.0*csqrt.re);
+      }
+
+      return (csqrt);
+    }
+            
     @Override
     public int hashCode() {
         int hash = 5;
