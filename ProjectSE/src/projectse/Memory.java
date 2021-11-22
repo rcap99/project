@@ -18,6 +18,10 @@ public class Memory {
         this.variables = new HashMap<>();
         this.stack = stack;
     }
+
+    public Memory() throws Exception {
+        throw new Exception("Not supported");
+    }
     
     public void saveNumberInMemory(String name){
         if(variables.containsKey(name))

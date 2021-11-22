@@ -29,6 +29,7 @@ public class MemoryTest {
         m.saveNumberInMemory("a");
         cs.add(x);
         m.incrementNumberFromMemory("a");
+        assertTrue(z.add(x).equals(m.getNumberFromMemory("a")));
     }
     @Test
     public void testDecrementNumberInMemory(){
@@ -40,5 +41,6 @@ public class MemoryTest {
         m.saveNumberInMemory("a");
         cs.add(x);
         m.decrementNumberFromMemory("a");
+        assertTrue(z.subtract(x).equals(m.getNumberFromMemory("a")));
     }
 }
