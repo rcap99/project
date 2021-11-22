@@ -25,6 +25,7 @@ public class ComplexNumber {
           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
     public ComplexNumber(String s1, String s2){
      double re=Double.parseDouble(s1);
      double im=Double.parseDouble(s2);
@@ -76,7 +77,7 @@ public class ComplexNumber {
     public ComplexNumber subtract(ComplexNumber c2){
         ComplexNumber c1=this;  //invoking object
         double real = c1.re - c2.re;
-        double imag = c1.im - c2.im;
+        double imag= c1.im - c2.im;
         return new ComplexNumber(real, imag);
      }
     
@@ -109,15 +110,16 @@ public class ComplexNumber {
     }
     
     //invert the sign of a complex number
-    public ComplexNumber invertSign(ComplexNumber c1){
+    public ComplexNumber invertSign(){
+        ComplexNumber c1=this;
     if (c1.re>0) 
         c1.re=-c1.re;
     if (c1.im>0)
-        c1.im=-c1.re;
+        c1.im=-c1.im;
     if (c1.re<0) 
         c1.re=+c1.re;
     if (c1.im<0)
-        c1.im=-c1.re;
+        c1.im=+c1.im;
     return c1;
     }
     
