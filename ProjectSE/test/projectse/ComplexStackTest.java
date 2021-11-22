@@ -63,7 +63,15 @@ public class ComplexStackTest {
        assertTrue(cstack.isEmpty());
        cstack.clear();
    }        
-           
+   
+   @Test(expected=EmptyStackException.class)
+   public void testDrop(){
+       cstack.push(new ComplexNumber(1.1,1.1));
+       cstack.drop();
+       assertTrue(cstack.isEmpty());
+       cstack.drop();
+   }
+   
    @After 
    public void cleanUp(){
        cstack=null;
