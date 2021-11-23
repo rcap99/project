@@ -6,10 +6,6 @@
 package projectse;
 
 
-/**
- *
- * @author PRINCIPAL
- */
 public class ComplexNumber {  
      private double re;   // the real part
      private double im;   // the imaginary part
