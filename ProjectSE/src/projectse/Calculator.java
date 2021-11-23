@@ -41,6 +41,7 @@ public class Calculator {
         if(splitted.length == 2){
             String re = splitted[0];
             String im = splitted[1].replace("i", "");
+            System.out.println(re + im);
             if(s.contains("-") && s.lastIndexOf("-") != 0)
                 return new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
             return new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
