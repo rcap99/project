@@ -4,10 +4,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectse;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-
-
-public class ComplexNumber {
+/**
+ *
+ * @author PRINCIPAL
+ */
+public class ComplexNumber {  
      private double re;   // the real part
      private double im;   // the imaginary part
 
@@ -101,21 +105,15 @@ public class ComplexNumber {
     //invert the sign of a complex number
     public ComplexNumber invertSign(){
         ComplexNumber c1=this;
-    if (c1.re>0) 
-        c1.re=-c1.re;
-    if (c1.im>0)
-        c1.im=-c1.im;
-    if (c1.re<0) 
-        c1.re=+c1.re;
-    if (c1.im<0)
-        c1.im=+c1.im;
-    return c1;
+        this.re=-this.re;
+        this.im=-this.im;
+        return c1;  
     }
     
     //sqrt of a complexNumber
-    public ComplexNumber sqrt(ComplexNumber c1){
-    ComplexNumber csqrt = new ComplexNumber();
-   double dX, dY, dW, dR;
+    public ComplexNumber sqrt(){
+    ComplexNumber csqrt = this;
+    double dX, dY, dW, dR;
 
       if((re == 0) && (im == 0.0)) {
           csqrt.re = 0.0;
@@ -142,7 +140,7 @@ public class ComplexNumber {
          csqrt.re =  im/(2.0*csqrt.re);
       }
 
-      return (csqrt);
+      return csqrt;
     }
             
     @Override
