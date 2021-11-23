@@ -104,15 +104,16 @@ public class ComplexNumber {
     }
     
     //invert the sign of a complex number
-    public ComplexNumber invertSign(ComplexNumber c1){
+    public ComplexNumber invertSign(){
+        ComplexNumber c1=this;
     if (c1.re>0) 
         c1.re=-c1.re;
     if (c1.im>0)
-        c1.im=-c1.re;
+        c1.im=-c1.im;
     if (c1.re<0) 
         c1.re=+c1.re;
     if (c1.im<0)
-        c1.im=-c1.re;
+        c1.im=+c1.im;
     return c1;
     }
     
