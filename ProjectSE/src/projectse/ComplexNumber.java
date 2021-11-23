@@ -4,14 +4,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectse;
-import java.lang.String.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author PRINCIPAL
- */
+
+
 public class ComplexNumber {
      private double re;   // the real part
      private double im;   // the imaginary part

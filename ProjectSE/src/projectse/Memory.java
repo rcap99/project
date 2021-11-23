@@ -6,10 +6,7 @@ package projectse;
 
 import java.util.HashMap;
 
-/**
- *
- * @author pc
- */
+
 public class Memory {
     private HashMap<String, ComplexNumber> variables;
     private ComplexStack stack;
