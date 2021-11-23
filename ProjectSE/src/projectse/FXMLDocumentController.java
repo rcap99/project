@@ -40,7 +40,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         c = new Calculator();
-        tableColumn.setCellValueFactory(new PropertyValueFactory("complex"));
+        tableColumn.setCellValueFactory(new PropertyValueFactory("complexString"));
         stackView.setItems(obList);
         
     }    
