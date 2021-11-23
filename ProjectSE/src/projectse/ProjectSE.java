@@ -21,6 +21,7 @@ public class ProjectSE extends Application {
         stage.setScene(scene);
         stage.setTitle("Calculator");
         stage.show();
+        stage.setResizable(false);
     }
 
     /**
