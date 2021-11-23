@@ -24,11 +24,6 @@ public class ComplexNumber {
     public ComplexNumber() {
           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public ComplexNumber(String s1, String s2){
-     double re=Double.parseDouble(s1);
-     double im=Double.parseDouble(s2);
-    }
 
     public double getRe() {
         return re;
@@ -182,9 +177,8 @@ public class ComplexNumber {
         }
         return true;
     }
-    
-      
-    public StringProperty complexProperty(){
-      return new SimpleStringProperty(this.toString());
+
+    public String getComplexString(){
+        return this.toString();
     }
 }
