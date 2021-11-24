@@ -19,7 +19,8 @@ public class Calculator {
     }
     
     public void execute(String s){
-        if(s.matches("([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*\\+\\s*([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i")){
+        String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
+        if(s.matches(patternComplex)){
             System.out.println("match");
             ComplexNumber x = this.parse(s);
             stack.push(x);
