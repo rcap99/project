@@ -39,7 +39,9 @@ public class Memory {
      * 
      */
     public void getNumberFromMemory(String name){
-        stack.add(variables.get(name));
+        ComplexNumber temp = variables.get(name);
+        if(temp!=null)
+            stack.add(temp);
     }
     
     /**
