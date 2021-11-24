@@ -4,7 +4,9 @@
  */
 package projectse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,5 +62,21 @@ public class Calculator {
         return this.stack;
     }
     
+    public ArrayList<ComplexNumber> getList(){
+        stack=getComplexStack();
+        ArrayList<ComplexNumber> l=new ArrayList<>(stack);
+        Collections.reverse(l);
+        
+        ArrayList<ComplexNumber> subList=new ArrayList<>();
+        int i=0;
+        for(ComplexNumber x: l){
+            if(i<18){
+                subList.add(x);
+            }
+            i++;
+        }
+        
+        return subList;
+    }
     
 }
