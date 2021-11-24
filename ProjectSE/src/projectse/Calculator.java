@@ -120,6 +120,14 @@ public class Calculator {
     }
     
     /**
+     * This method returns the complex stack used in this Calculator object.
+     * @return stack ComplexStack object
+     */
+    public ComplexStack getComplexStack(){
+        return this.stack;
+    }
+    
+    /**
      * Returns the LIFO (last in - first out) representation of the stack.
      * @return List of ComplexNumber in LIFO order
      */
