@@ -39,7 +39,7 @@ public class CalculatorTest {
     }
     
     @Test
-    public void testGetLIFOList(){
+    public void testGetLifoList(){
         ComplexStack stack=c.getComplexStack();
         
         stack.push(n1);
@@ -48,7 +48,7 @@ public class CalculatorTest {
         stack.push(n4);
         stack.push(n5);
     
-        ArrayList<ComplexNumber> l=c.getLIFOList();
+        ArrayList<ComplexNumber> l=c.getLifoList();
         assertEquals(n5,l.get(0));
         assertEquals(n4,l.get(1));
         assertEquals(n3,l.get(2));
