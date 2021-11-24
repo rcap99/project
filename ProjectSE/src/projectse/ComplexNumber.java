@@ -1,7 +1,10 @@
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * The ComplexNumber class manages all the main operations on complex numbers,
+ * allowing to operate even on non-complex numbers in case of the absence of the 
+ * imaginary part
+ * @author Antonio
+ * @version 1.8
  */
 package projectse;
 
@@ -35,7 +38,10 @@ public class ComplexNumber {
         this.im = im;
     }
     
-    // return a string representation of the invoking complex number
+    /**
+     * returns the String representation of a complex number 
+     * @return String "a+bi"
+     */
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";
@@ -43,17 +49,27 @@ public class ComplexNumber {
         return re + "+" + im + "i";
     }
     
-    //return modulus of a complex number
+    /**
+     * Calculates the modulus of a complex number
+     * @return modulus
+     */
     public double abs(){
     return Math.hypot(re, re);
     }
     
-    //return phase of a complex number in radians
+    /**
+     * Calculates in radians the phase of a complex number
+     * @return phase
+     */
      public double phase() {
         return Math.atan2(im, re);
     }
      
-    //add two complex numbers 
+    /**
+     * Supports addition between two complex numbers
+     * @param c2 the addend
+     * @return the result of the addition
+     */
     public ComplexNumber add(ComplexNumber c2){
         ComplexNumber c1=this;  //invoking object
         double real = c1.re + c2.re;
@@ -61,7 +77,11 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }     
      
-    //subtract two complex numbers
+    /**
+     * Supports subtraction between two complex numbers
+     * @param c2 the subtracting
+     * @return the result of the subtraction
+     */
     public ComplexNumber subtract(ComplexNumber c2){
         ComplexNumber c1=this;  //invoking object
         double real = c1.re - c2.re;
@@ -69,7 +89,11 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
      }
     
-    //multiplicate two complex numbers
+    /**
+     * Supports multiplication between two complex numbers
+     * @param c2 the multiplier
+     * @return the result of the multiplication
+     */
       public ComplexNumber multiplication(ComplexNumber c2) {
         ComplexNumber c1 = this;
         double real = c1.re * c2.re - c1.im * c2.im;
@@ -77,13 +101,22 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }
       
-     // return a new Complex object whose value is the reciprocal of this
+    
+     /**
+      * Calculates the reciprocal of a complex number
+      * @return a new Complex object whose value is the reciprocal of this
+      */
     public ComplexNumber reciprocal() {
         double scale = re*re + im*im;
         return new ComplexNumber(re / scale, -im / scale);
     }
     
-     // return a new Complex object whose value is (this * b)
+     
+    /**
+     * Calculates this(this*b)
+     * @param b the value to pass to the function
+     * @return a new Complex object whose value is (this * b)
+     */
     public ComplexNumber times(ComplexNumber b) {
         ComplexNumber a = this;
         double real = a.re * b.re - a.im * b.im;
@@ -91,13 +124,21 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }
     
-      //division between two complex numbers
+    /**
+     * Supports division between two complex numbers
+     * @param c2 the divider
+     * @return the result of the division
+     */
     public ComplexNumber division(ComplexNumber c2) {
         ComplexNumber c1 = this;
         return c1.times(c2.reciprocal());
     }
     
-    //invert the sign of a complex number
+    
+    /**
+     * Inverts the sign of a number
+     * @return a new number with inverted sign
+     */
     public ComplexNumber invertSign(){
         ComplexNumber c1=this;
         this.re=-this.re;
@@ -105,7 +146,11 @@ public class ComplexNumber {
         return c1;  
     }
     
-    //sqrt of a complexNumber
+    
+    /**
+     * Supports the square root of a complex number
+     * @return the sqrt of the number
+     */
     public ComplexNumber sqrt(){
     ComplexNumber csqrt = this;
     double dX, dY, dW, dR;
