@@ -111,18 +111,6 @@ public class ComplexNumber {
         return new ComplexNumber(re / scale, -im / scale);
     }
     
-     
-    /**
-     * Calculates this(this*b)
-     * @param b the value to pass to the function
-     * @return a new Complex object whose value is (this * b)
-     */
-    public ComplexNumber times(ComplexNumber b) {
-        ComplexNumber a = this;
-        double real = a.re * b.re - a.im * b.im;
-        double imag = a.re * b.im + a.im * b.re;
-        return new ComplexNumber(real, imag);
-    }
     
     /**
      * Supports division between two complex numbers
@@ -131,7 +119,7 @@ public class ComplexNumber {
      */
     public ComplexNumber division(ComplexNumber c2) {
         ComplexNumber c1 = this;
-        return c1.times(c2.reciprocal());
+        return c1.multiplication(c2.reciprocal());
     }
     
     

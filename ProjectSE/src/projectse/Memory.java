@@ -30,16 +30,16 @@ public class Memory {
     public void saveNumberInMemory(String name){
         if(variables.containsKey(name))
             variables.remove(name);
-        variables.put(name, stack.pop());
+        variables.put(name, stack.peek());
     }   
     
     /**
      * Pushes the value of the variable onto the stack
      * @param name represent the key of element to push
-     * @return 
+     * 
      */
-    public ComplexNumber getNumberFromMemory(String name){
-        return variables.get(name);
+    public void getNumberFromMemory(String name){
+        stack.add(variables.get(name));
     }
     
     /**
@@ -50,7 +50,7 @@ public class Memory {
     public void incrementNumberFromMemory(String name){
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).add(stack.pop());
+        ComplexNumber temp = variables.get(name).add(stack.peek());
         variables.remove(name);
         variables.put(name, temp);
     }
@@ -63,7 +63,7 @@ public class Memory {
     public void decrementNumberFromMemory(String name){
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).subtract(stack.pop());
+        ComplexNumber temp = variables.get(name).subtract(stack.peek());
         variables.remove(name);
         variables.put(name, temp);
     }
