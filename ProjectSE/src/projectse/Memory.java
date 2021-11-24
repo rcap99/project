@@ -36,10 +36,10 @@ public class Memory {
     /**
      * Pushes the value of the variable onto the stack
      * @param name represent the key of element to push
-     * @return 
+     * 
      */
-    public ComplexNumber getNumberFromMemory(String name){
-        return variables.get(name);
+    public void getNumberFromMemory(String name){
+        stack.add(variables.get(name));
     }
     
     /**
