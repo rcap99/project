@@ -30,7 +30,7 @@ public class Memory {
     public void saveNumberInMemory(String name){
         if(variables.containsKey(name))
             variables.remove(name);
-        variables.put(name, stack.pop());
+        variables.put(name, stack.peek());
     }   
     
     /**
