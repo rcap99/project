@@ -36,7 +36,6 @@ public class Calculator {
      * @param s String of the operation to be executed.
      */
     public void execute(String s){
-        this.parse(s);
         String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
         ComplexNumber c1, c2;
         if(s.matches(patternComplex)){
