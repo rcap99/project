@@ -17,7 +17,8 @@ public class MemoryTest {
         Memory m = new Memory(cs);
         cs.push(z);
         m.saveNumberInMemory("a");
-        assertEquals(z, m.getNumberFromMemory("a"));
+        m.getNumberFromMemory("a");
+        assertEquals(z, cs.peek());
     }
     @Test
     public void testIncrementNumberInMemory(){
@@ -30,8 +31,9 @@ public class MemoryTest {
         m.saveNumberInMemory("a");
         cs.push(x);
         m.incrementNumberFromMemory("a");
-        assertTrue(z.add(x).equals(m.getNumberFromMemory("a")));
-        assertFalse(z.add(y).equals(m.getNumberFromMemory("a")));
+        m.getNumberFromMemory("a");
+        assertTrue(z.add(x).equals(cs.pop()));
+        assertFalse(z.add(y).equals(cs.pop()));
     }
     @Test
     public void testDecrementNumberInMemory(){
@@ -44,7 +46,8 @@ public class MemoryTest {
         m.saveNumberInMemory("a");
         cs.push(x);
         m.decrementNumberFromMemory("a");
-        assertTrue(z.subtract(x).equals(m.getNumberFromMemory("a")));
-        assertFalse(z.subtract(y).equals(m.getNumberFromMemory("a")));
+        m.getNumberFromMemory("a");
+        assertTrue(z.subtract(x).equals(cs.pop()));
+        assertFalse(z.subtract(y).equals(cs.pop()));
     }
 }
