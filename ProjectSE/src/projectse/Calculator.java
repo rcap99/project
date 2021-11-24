@@ -62,6 +62,16 @@ public class Calculator {
                 memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
             } else if(s.matches("-[a-zA-Z]")){
                 memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
+            } else if(s.equalsIgnoreCase("clear")){
+                stack.clear();
+            } else if(s.equalsIgnoreCase("drop")){
+                stack.drop();
+            } else if(s.equalsIgnoreCase("dup")){
+                stack.dup();
+            } else if(s.equalsIgnoreCase("swap")){
+                stack.swap();
+            } else if(s.equalsIgnoreCase("over")){
+                stack.over();
             }
         }
     }
