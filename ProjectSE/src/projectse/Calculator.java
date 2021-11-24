@@ -64,7 +64,6 @@ public class Calculator {
                 memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
             }
         }
-        System.out.println(stack);
     }
     
     public ComplexNumber parse(String s){
