@@ -50,7 +50,7 @@ public class Memory {
     public void incrementNumberFromMemory(String name){
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).add(stack.pop());
+        ComplexNumber temp = variables.get(name).add(stack.peek());
         variables.remove(name);
         variables.put(name, temp);
     }
@@ -63,7 +63,7 @@ public class Memory {
     public void decrementNumberFromMemory(String name){
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).subtract(stack.pop());
+        ComplexNumber temp = variables.get(name).subtract(stack.peek());
         variables.remove(name);
         variables.put(name, temp);
     }
