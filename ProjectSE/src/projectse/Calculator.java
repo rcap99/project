@@ -92,7 +92,7 @@ public class Calculator {
         return this.stack;
     }
     
-    public ArrayList<ComplexNumber> getList(){
+    public ArrayList<ComplexNumber> getLIFOList(){
         stack=getComplexStack();
         ArrayList<ComplexNumber> l=new ArrayList<>(stack);
         Collections.reverse(l);

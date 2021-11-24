@@ -5,6 +5,8 @@
 package projectse;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +47,9 @@ public class FXMLDocumentController implements Initializable {
     private void execute(ActionEvent event) {
         c.execute(textField.getText());
         textField.clear();
-        obList.add(c.getComplexStack().peek()); //non va bene
+        obList.clear();
+        ArrayList<ComplexNumber>l=c.getLIFOList();
+        obList.addAll(l);
     }
     
 }
