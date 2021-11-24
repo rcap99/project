@@ -11,26 +11,56 @@ import java.util.Set;
 public class Calculator {
     private Set<String> basicOperations;
     private ComplexStack stack;
+    private Memory memory;
     
     public Calculator(){
         stack = new ComplexStack();
-        //initialize memory
+        memory = new Memory(stack);
         basicOperations = new HashSet<>(Arrays.asList("add","subtract","multiply","divide","sqrt","inversion"));
     }
     
     public void execute(String s){
         String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
+        ComplexNumber c1, c2;
         if(s.matches(patternComplex)){
-            System.out.println("match");
             ComplexNumber x = this.parse(s);
             stack.push(x);
         } else{
-            System.out.println("not match");
-            //if(basicOperations.contains(s)){
-                //execute s
-            //}
-            //check if s is a custom operation
-                //execute s
+            if(basicOperations.contains(s)){
+                c1 = this.stack.pop();
+                switch(s){
+                    case "add":
+                        c2 = this.stack.pop();
+                        this.stack.push(c1.add(c2));
+                        break;
+                    case "subtract":
+                        c2 = this.stack.pop();
+                        this.stack.push(c1.subtract(c2));
+                        break;
+                    case "multiply":
+                        c2 = this.stack.pop();
+                        this.stack.push(c1.multiplication(c2));
+                        break;
+                    case "divide":
+                        c2 = this.stack.pop();
+                        this.stack.push(c1.division(c2));
+                        break;
+                    case "sqrt":
+                        this.stack.push(c1.sqrt());
+                        break;
+                    case "inversion":
+                        this.stack.push(c1.invertSign());
+                        break;
+                }
+            } else if(s.matches(">\\w")){
+                memory.saveNumberInMemory(s.substring(1));
+            } else if(s.matches("<\\w")){
+                memory.getNumberFromMemory(s.substring(1));
+            } else if(s.matches("\\+\\w")){
+                memory.incrementNumberFromMemory(s.substring(1));
+            } else if(s.matches("-\\w")){
+                memory.decrementNumberFromMemory(s.substring(1));
+            }
         }
     }
     
