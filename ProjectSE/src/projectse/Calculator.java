@@ -54,16 +54,17 @@ public class Calculator {
                         this.stack.push(c1.invertSign());
                         break;
                 }
-            } else if(s.matches(">\\w")){
-                memory.saveNumberInMemory(s.substring(1));
-            } else if(s.matches("<\\w")){
-                memory.getNumberFromMemory(s.substring(1));
-            } else if(s.matches("\\+\\w")){
-                memory.incrementNumberFromMemory(s.substring(1));
-            } else if(s.matches("-\\w")){
-                memory.decrementNumberFromMemory(s.substring(1));
+            } else if(s.matches(">[a-zA-Z]")){
+                memory.saveNumberInMemory(s.substring(1).toLowerCase());
+            } else if(s.matches("<[a-zA-Z]")){
+                memory.getNumberFromMemory(s.substring(1).toLowerCase());
+            } else if(s.matches("\\+[a-zA-Z]")){
+                memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
+            } else if(s.matches("-[a-zA-Z]")){
+                memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
             }
         }
+        System.out.println(stack);
     }
     
     public ComplexNumber parse(String s){
