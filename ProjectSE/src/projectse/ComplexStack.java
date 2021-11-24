@@ -6,7 +6,6 @@
 package projectse;
 
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.Stack;
 
 /**
