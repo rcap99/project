@@ -1,12 +1,12 @@
+package projectse;
 
-/*
+/**
  * The ComplexNumber class manages all the main operations on complex numbers,
  * allowing to operate even on non-complex numbers in case of the absence of the 
- * imaginary part
- * @author Antonio
- * @version 1.8
+ * imaginary part.
+ * 
+ * @author Group11
  */
-package projectse;
 
 
 public class ComplexNumber {  
