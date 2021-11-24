@@ -16,12 +16,9 @@ public class Calculator {
         stack = new ComplexStack();
         //initialize memory
         basicOperations = new HashSet<>(Arrays.asList("add","subtract","multiply","divide","sqrt","inversion"));
-                
     }
     
     public void execute(String s){
-        
-        
         if(s.matches("([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*\\+\\s*([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i")){
             System.out.println("match");
             ComplexNumber x = this.parse(s);
@@ -37,11 +34,17 @@ public class Calculator {
     }
     
     public ComplexNumber parse(String s){
-        String[] splitted = s.split("[^-][+|-]");
-        if(splitted.length == 2){
-            String re = splitted[0];
-            String im = splitted[1].replace("i", "");
-            System.out.println(re + im);
+        String[] splitted = s.split("[+|-]");
+        String re, im;
+        if(splitted.length == 3){
+            re = splitted[1];
+            im = splitted[2].replace("i", "");
+            if(s.contains("-") && s.lastIndexOf("-") != 0)
+                return new ComplexNumber(-Double.parseDouble(re), -Double.parseDouble(im));
+            return new ComplexNumber(-Double.parseDouble(re), Double.parseDouble(im));
+        } else if(splitted.length == 2){
+            re = splitted[0];
+            im = splitted[1].replace("i", "");
             if(s.contains("-") && s.lastIndexOf("-") != 0)
                 return new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
             return new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
