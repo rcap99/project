@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -39,7 +40,7 @@ public class FXMLDocumentController implements Initializable {
         c = new Calculator();
         tableColumn.setCellValueFactory(new PropertyValueFactory("complexString"));
         stackView.setItems(obList);
-        
+        stackView.setPlaceholder(new Label("Empty stack"));
     }    
 
     @FXML
