@@ -10,18 +10,33 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This class represent the calculator and it is directly controlled by the Controller class. It has a member {@link ComplexStack}
+ * and {@link Memory} to perform all the operations.
+ * 
+ * @author Group11
+ */
 public class Calculator {
     private Set<String> basicOperations;
     private ComplexStack stack;
     private Memory memory;
     
+    /**
+     *  Default constructor for Calculator that creates empty {@link ComplexStack} and {@link Memory} objects.
+     */
     public Calculator(){
         stack = new ComplexStack();
         memory = new Memory(stack);
         basicOperations = new HashSet<>(Arrays.asList("add","subtract","multiply","divide","sqrt","inversion"));
     }
     
+    /**
+     * Executes an operations. It a complex number is provided, it will be added to the stack. Otherwise, the corresponding operation will be executed.
+     * 
+     * @param s String of the operation to be executed.
+     */
     public void execute(String s){
+        this.parse(s);
         String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
         ComplexNumber c1, c2;
         if(s.matches(patternComplex)){
@@ -76,6 +91,12 @@ public class Calculator {
         }
     }
     
+    /**
+     * Parses a complex number expressed as a String and returns the corresponding ComplexNumber object.
+     * 
+     * @param s String to be parsed.
+     * @return ComplexNumber object from s
+     */
     public ComplexNumber parse(String s){
         String[] splitted = s.split("[+|-]");
         String re, im;
@@ -98,12 +119,11 @@ public class Calculator {
         }
     }
     
-    public ComplexStack getComplexStack(){
-        return this.stack;
-    }
-    
+    /**
+     * Returns the LIFO (last in - first out) representation of the stack.
+     * @return List of ComplexNumber in LIFO order
+     */
     public ArrayList<ComplexNumber> getLifoList(){
-        stack=getComplexStack();
         ArrayList<ComplexNumber> l=new ArrayList<>(stack);
         Collections.reverse(l);
         
