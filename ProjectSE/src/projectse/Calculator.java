@@ -7,6 +7,7 @@ package projectse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,60 +35,115 @@ public class Calculator {
      * Executes an operations. It a complex number is provided, it will be added to the stack. Otherwise, the corresponding operation will be executed.
      * 
      * @param s String of the operation to be executed.
+     * @return int return code. 0 if the operation has been executed, -1 if there are not enough elements into the stack, -2 if s is not a valid operation.
      */
-    public void execute(String s){
+    public int execute(String s){
         String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
         ComplexNumber c1, c2;
         if(s.matches(patternComplex)){
             ComplexNumber x = this.parse(s);
             stack.push(x);
+            return 0;
         } else{
             if(basicOperations.contains(s)){
-                c1 = this.stack.pop();
+                try{
+                    c1 = this.stack.pop();
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
                 switch(s){
                     case "add":
-                        c2 = this.stack.pop();
+                        try{
+                            c2 = this.stack.pop();
+                        } catch(EmptyStackException ex){
+                            return -1;
+                        }    
                         this.stack.push(c1.add(c2));
-                        break;
+                        return 0;
                     case "subtract":
-                        c2 = this.stack.pop();
+                        try{
+                            c2 = this.stack.pop();
+                        } catch(EmptyStackException ex){
+                            return -1;
+                        }
                         this.stack.push(c2.subtract(c1));
-                        break;
+                        return 0;
                     case "multiply":
-                        c2 = this.stack.pop();
+                        try{
+                            c2 = this.stack.pop();
+                        } catch(EmptyStackException ex){
+                            return -1;
+                        }
                         this.stack.push(c1.multiplication(c2));
-                        break;
+                        return 0;
                     case "divide":
-                        c2 = this.stack.pop();
+                        try{
+                            c2 = this.stack.pop();
+                        } catch(EmptyStackException ex){
+                            return -1;
+                        }
                         this.stack.push(c2.division(c1));
-                        break;
+                        return 0;
                     case "sqrt":
                         this.stack.push(c1.sqrt());
-                        break;
+                        return 0;
                     case "inversion":
                         this.stack.push(c1.invertSign());
-                        break;
+                        return 0;
                 }
             } else if(s.matches(">[a-zA-Z]")){
-                memory.saveNumberInMemory(s.substring(1).toLowerCase());
+                try{
+                    memory.saveNumberInMemory(s.substring(1).toLowerCase());
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             } else if(s.matches("<[a-zA-Z]")){
                 memory.getNumberFromMemory(s.substring(1).toLowerCase());
             } else if(s.matches("\\+[a-zA-Z]")){
-                memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
+                try{
+                    memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             } else if(s.matches("-[a-zA-Z]")){
-                memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
+                try{
+                    memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             } else if(s.equalsIgnoreCase("clear")){
                 stack.clear();
+                return 0;
             } else if(s.equalsIgnoreCase("drop")){
                 stack.drop();
+                return 0;
             } else if(s.equalsIgnoreCase("dup")){
-                stack.dup();
+                try{
+                   stack.dup(); 
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             } else if(s.equalsIgnoreCase("swap")){
-                stack.swap();
+                try{
+                   stack.swap(); 
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             } else if(s.equalsIgnoreCase("over")){
-                stack.over();
+                try{
+                   stack.over(); 
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             }
         }
+        return -2;
     }
     
     /**
