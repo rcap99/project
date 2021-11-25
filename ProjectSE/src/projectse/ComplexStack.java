@@ -83,15 +83,10 @@ public class ComplexStack extends Stack<ComplexNumber> {
     /**
     *   This method overrides the clear method of the {@link java.util} library.
     *   It allows us to insert new numbers in the stack.
-    *   @throws EmptyStackException it throws an {@link EmptyStackException} if the stack is empty
     */
     @Override
-    public void clear()throws EmptyStackException{
-        if(isEmpty()){
-            throw new EmptyStackException();
-        }
+    public void clear(){
         super.clear();
-        
     }
     
     /**

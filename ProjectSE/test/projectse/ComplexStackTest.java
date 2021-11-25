@@ -55,13 +55,11 @@ public class ComplexStackTest {
        cstack.over();
    }
    
-   @Test(expected=EmptyStackException.class)
    public void testClear(){
        cstack.push(new ComplexNumber(1.1,1.1));
        cstack.push(new ComplexNumber(2.2,2.2));
        cstack.clear();
        assertTrue(cstack.isEmpty());
-       cstack.clear();
    }        
    
    @Test(expected=EmptyStackException.class)
