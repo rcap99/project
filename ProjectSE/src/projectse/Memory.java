@@ -4,6 +4,7 @@
  */
 package projectse;
 
+import java.util.EmptyStackException;
 import java.util.HashMap;
 
 /**
@@ -28,6 +29,9 @@ public class Memory {
      * @param name represents the key in the HashMap 
      */
     public void saveNumberInMemory(String name){
+        if (stack.isEmpty()){
+            throw new EmptyStackException();
+        }
         if(variables.containsKey(name))
             variables.remove(name);
         variables.put(name, stack.peek());
@@ -50,6 +54,9 @@ public class Memory {
      * @param name represents the key of element to increment
      */
     public void incrementNumberFromMemory(String name){
+        if (stack.isEmpty()){
+            throw new EmptyStackException();
+        }
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
         ComplexNumber temp = variables.get(name).add(stack.peek());
@@ -63,6 +70,9 @@ public class Memory {
      * @param name represents the key of element to increment
      */
     public void decrementNumberFromMemory(String name){
+        if (stack.isEmpty()){
+            throw new EmptyStackException();
+        }
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
         ComplexNumber temp = variables.get(name).subtract(stack.peek());
