@@ -119,10 +119,18 @@ public class Calculator {
                 }
                 return 0;
             } else if(s.equalsIgnoreCase("clear")){
-                stack.clear();
+                try{
+                   stack.clear(); 
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
                 return 0;
             } else if(s.equalsIgnoreCase("drop")){
-                stack.drop();
+                try{
+                   stack.drop(); 
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
                 return 0;
             } else if(s.equalsIgnoreCase("dup")){
                 try{
