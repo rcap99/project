@@ -51,7 +51,7 @@ public class Calculator {
                         break;
                     case "subtract":
                         c2 = this.stack.pop();
-                        this.stack.push(c1.subtract(c2));
+                        this.stack.push(c2.subtract(c1));
                         break;
                     case "multiply":
                         c2 = this.stack.pop();
