@@ -15,15 +15,15 @@ public class Memory {
     private HashMap<String, ComplexNumber> variables;
     private ComplexStack stack;
     
+    /**
+     * Costructor of class {@link Memory}, it create an instance of class HashMap included in {@link java.util} library
+     * @param stack represents the complex stack associated with the memory
+     */
     public Memory(ComplexStack stack) {
         this.variables = new HashMap<>();
         this.stack = stack;
     }
 
-    public Memory() throws Exception {
-        throw new Exception("Not supported");
-    }
-    
     /**
      * Takes the top element from the stack and saves it into the HashMap
      * @param name represents the key in the HashMap 
