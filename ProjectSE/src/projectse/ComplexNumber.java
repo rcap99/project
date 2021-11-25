@@ -12,28 +12,45 @@ package projectse;
 public class ComplexNumber {  
      private double re;   // the real part
      private double im;   // the imaginary part
-
+     
+    /**
+     * Constructor of the ComplexNumber class
+     * @param re the real part
+     * @param im the imaginary part
+     */
     public ComplexNumber(double re, double im) {
         this.re = re;
         this.im = im;
     }
-
-    public ComplexNumber() {
-          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    /**
+     * Gets the real part of a complex number
+     * @return the real part of a complex number
+     */
     public double getRe() {
         return re;
     }
-
+    
+    /**
+     * Sets the real part of a complex number
+     * @param re the real part of a complex number
+     */
     public void setRe(double re) {
         this.re = re;
     }
 
+    /**
+     * Gets the imaginry part of a complex number
+     * @return the imaginary part of a complex number
+     */
     public double getIm() {
         return im;
     }
 
+    /**
+     * Sets the imaginary part of a complex number
+     * @param im the imaginary part of a complex number
+     */
     public void setIm(double im) {
         this.im = im;
     }
@@ -54,7 +71,7 @@ public class ComplexNumber {
      * @return modulus
      */
     public double abs(){
-    return Math.hypot(re, re);
+    return Math.hypot(re, im);
     }
     
     /**
@@ -170,7 +187,11 @@ public class ComplexNumber {
 
       return csqrt;
     }
-            
+     
+    /**
+     * Calculates the hash code of a complex number
+     * @return the hash code of the complex number
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -179,6 +200,11 @@ public class ComplexNumber {
         return hash;
     }
 
+    /**
+     * Checks if two numbers are equals
+     * @param obj the other number to compare
+     * @return a boolean (equal or false) 
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -199,7 +225,11 @@ public class ComplexNumber {
         }
         return true;
     }
-
+    
+    /**
+     * Gets the string of a complex number
+     * @return the string of a complex number
+     */
     public String getComplexString(){
         return this.toString();
     }
