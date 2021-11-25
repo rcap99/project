@@ -56,6 +56,7 @@ public class Calculator {
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
+                            stack.push(c1);
                             return -1;
                         }    
                         this.stack.push(c1.add(c2));
@@ -64,6 +65,7 @@ public class Calculator {
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
+                            stack.push(c1);
                             return -1;
                         }
                         this.stack.push(c2.subtract(c1));
@@ -72,6 +74,7 @@ public class Calculator {
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
+                            stack.push(c1);
                             return -1;
                         }
                         this.stack.push(c1.multiplication(c2));
@@ -80,6 +83,7 @@ public class Calculator {
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
+                            stack.push(c1);
                             return -1;
                         }
                         this.stack.push(c2.division(c1));
