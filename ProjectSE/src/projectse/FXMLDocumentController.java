@@ -51,13 +51,13 @@ public class FXMLDocumentController implements Initializable {
     private void execute(ActionEvent event) {
         int returnValue=c.execute(textField.getText());
         if(returnValue!=0)
-            alertErrore(returnValue,textField.getText());
+            alertError(returnValue,textField.getText());
         textField.clear();
         obList.clear();
         ArrayList<ComplexNumber>l=c.getLifoList();
         obList.addAll(l);
     }
-    private void alertErrore(int returnValue,String operation){
+    private void alertError(int returnValue,String operation){
         String customText,customAlert;
         switch(returnValue){
             case -2:
@@ -69,7 +69,7 @@ public class FXMLDocumentController implements Initializable {
                 customText="There aren't enough elements in the stack to execute the operation of "+operation;
                 break;
         }
-        Alert alert=new Alert(AlertType.INFORMATION,customAlert);
+        Alert alert=new Alert(AlertType.ERROR,customAlert);
         alert.setTitle("Fatal Error");
         alert.setHeaderText(customText);
         Optional <ButtonType> response=alert.showAndWait();
