@@ -164,7 +164,7 @@ public class Calculator {
      * @param s String to be parsed.
      * @return ComplexNumber object from s
      */
-    private ComplexNumber parse(String s){
+    public ComplexNumber parse(String s){
         String[] splitted = s.split("[+|-]");
         String re, im;
         if(splitted.length == 3){
