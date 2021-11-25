@@ -120,5 +120,43 @@ public class ComplexNumberTest {
        assertEquals("6.3639610306789285+6.363961030678927i",c8.toString());
        
     }
+       
+      @Test
+       public void testAbs(){
+       ComplexNumber c1=new ComplexNumber(3,4);
+       Double c2=c1.abs();
+       assertEquals("5.0", c2.toString());
+       
+       ComplexNumber c3=new ComplexNumber(3,0);
+       Double c4=c3.abs();
+       assertEquals("3.0", c4.toString());
+       
+       ComplexNumber c5=new ComplexNumber(0,3);
+       Double c6=c5.abs();
+       assertEquals("3.0", c6.toString());
+       
+       ComplexNumber c7=new ComplexNumber(-3,-4);
+       Double c8=c7.abs();
+       assertEquals("5.0", c8.toString());  
+     }
+      
+      @Test
+       public void testPhase(){
+       ComplexNumber c1=new ComplexNumber(1,1);
+       Double c2=c1.phase();
+       assertEquals("0.7853981633974483", c2.toString());
+       
+       ComplexNumber c3=new ComplexNumber(1,0);
+       Double c4=c3.phase();
+       assertEquals("0.0", c4.toString());
+       
+       ComplexNumber c5=new ComplexNumber(0,2);
+       Double c6=c5.phase();
+       assertEquals("1.5707963267948966", c6.toString());
+       
+       ComplexNumber c7=new ComplexNumber(-1,-1);
+       Double c8=c7.phase();
+       assertEquals("-2.356194490192345", c8.toString());
+    }
 
 }
