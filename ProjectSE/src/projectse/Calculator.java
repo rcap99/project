@@ -28,7 +28,7 @@ public class Calculator {
     public Calculator(){
         stack = new ComplexStack();
         memory = new Memory(stack);
-        basicOperations = new HashSet<>(Arrays.asList("add","subtract","multiply","divide","sqrt","inversion"));
+        basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));
     }
     
     /**
@@ -52,7 +52,7 @@ public class Calculator {
                     return -1;
                 }
                 switch(s){
-                    case "add":
+                    case "+":
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
@@ -61,7 +61,7 @@ public class Calculator {
                         }    
                         this.stack.push(c1.add(c2));
                         return 0;
-                    case "subtract":
+                    case "-":
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
@@ -70,7 +70,7 @@ public class Calculator {
                         }
                         this.stack.push(c2.subtract(c1));
                         return 0;
-                    case "multiply":
+                    case "*":
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
@@ -79,7 +79,7 @@ public class Calculator {
                         }
                         this.stack.push(c1.multiplication(c2));
                         return 0;
-                    case "divide":
+                    case "/":
                         try{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
@@ -91,7 +91,7 @@ public class Calculator {
                     case "sqrt":
                         this.stack.push(c1.sqrt());
                         return 0;
-                    case "inversion":
+                    case "+-":
                         this.stack.push(c1.invertSign());
                         return 0;
                 }
@@ -119,11 +119,7 @@ public class Calculator {
                 }
                 return 0;
             } else if(s.equalsIgnoreCase("clear")){
-                try{
-                   stack.clear(); 
-                } catch(EmptyStackException ex){
-                    return -1;
-                }
+                stack.clear(); 
                 return 0;
             } else if(s.equalsIgnoreCase("drop")){
                 try{
