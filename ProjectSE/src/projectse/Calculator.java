@@ -59,7 +59,7 @@ public class Calculator {
                         break;
                     case "divide":
                         c2 = this.stack.pop();
-                        this.stack.push(c1.division(c2));
+                        this.stack.push(c2.division(c1));
                         break;
                     case "sqrt":
                         this.stack.push(c1.sqrt());
