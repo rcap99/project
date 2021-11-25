@@ -72,6 +72,7 @@ public class ComplexStack extends Stack<ComplexNumber> {
         }
         ComplexNumber last=pop();
         if(isEmpty()){
+            push(last);
             throw new EmptyStackException();
         }
         ComplexNumber secondlast=pop();
