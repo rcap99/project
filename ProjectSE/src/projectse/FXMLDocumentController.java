@@ -6,6 +6,7 @@ package projectse;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -54,7 +55,7 @@ public class FXMLDocumentController implements Initializable {
             alertError(returnValue,textField.getText());
         textField.clear();
         obList.clear();
-        ArrayList<ComplexNumber>l=c.getLifoList();
+        List<ComplexNumber>l=c.getLifoList();
         obList.addAll(l);
     }
     private void alertError(int returnValue,String operation){

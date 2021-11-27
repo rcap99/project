@@ -5,7 +5,10 @@
 
 package projectse;
 
+import java.util.ConcurrentModificationException;
 import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Stack;
 
 /**
@@ -17,7 +20,7 @@ import java.util.Stack;
  * @see Stack
  * @author Group11
  */
-public class ComplexStack extends Stack<ComplexNumber> {
+public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber>{
 
     /**
      *  Constructor of the class {@link ComplexStack} that calls the constructor of the generic stack data structure included in the {@link java.util} library
@@ -25,6 +28,7 @@ public class ComplexStack extends Stack<ComplexNumber> {
      */
     public ComplexStack() {
         super();
+        
     }
     
     /**
@@ -99,6 +103,46 @@ public class ComplexStack extends Stack<ComplexNumber> {
             throw new EmptyStackException();
         }
         pop();
+    }
+
+    @Override
+    public synchronized Iterator<ComplexNumber> iterator() {
+        return new ComplexStackIterator();
+    }
+    
+    private class ComplexStackIterator implements Iterator<ComplexNumber>{
+        
+        private int visited=0;
+        private int currentPosition;
+        private final int elementsInside;
+        private final long initialCount;
+
+        public ComplexStackIterator() {
+            elementsInside=size();
+            initialCount=elementCount;
+            currentPosition=lastIndexOf(peek());
+        }
+        
+        
+        @Override
+        public boolean hasNext() {
+            if(initialCount!=elementCount){
+                throw new ConcurrentModificationException();
+            }
+            return visited <elementsInside;
+        }
+
+        @Override
+        public ComplexNumber next() {
+            if(!hasNext()){
+                throw new NoSuchElementException();
+            }
+            ComplexNumber cn=get(currentPosition);
+            currentPosition--;
+            visited++;
+            return cn;
+        }
+        
     }
     
 }

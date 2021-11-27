@@ -4,11 +4,11 @@
  */
 package projectse;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -194,20 +194,12 @@ public class Calculator {
      * Returns the LIFO (last in - first out) representation of the stack.
      * @return List of ComplexNumber in LIFO order
      */
-    public ArrayList<ComplexNumber> getLifoList(){
-        ArrayList<ComplexNumber> l=new ArrayList<>(stack);
-        Collections.reverse(l);
-        
-        ArrayList<ComplexNumber> subList=new ArrayList<>();
-        int i=0;
-        for(ComplexNumber x: l){
-            if(i<18){
-                subList.add(x);
-            }
-            i++;
-        }
-        
-        return subList;
+    public List<ComplexNumber> getLifoList(){
+       List<ComplexNumber> list=new LinkedList<>();
+       for(ComplexNumber c: stack){
+           list.add(c);
+       }
+       return list;
     }
     
 }

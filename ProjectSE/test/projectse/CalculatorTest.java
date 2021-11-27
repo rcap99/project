@@ -4,7 +4,7 @@
  */
 package projectse;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -48,7 +48,7 @@ public class CalculatorTest {
         stack.push(n4);
         stack.push(n5);
     
-        ArrayList<ComplexNumber> l=c.getLifoList();
+        List<ComplexNumber> l=c.getLifoList();
         assertEquals(n5,l.get(0));
         assertEquals(n4,l.get(1));
         assertEquals(n3,l.get(2));
