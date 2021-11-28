@@ -120,13 +120,14 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
         public ComplexStackIterator() {
             elementsInside=size();
             initialCount=elementCount;
-            currentPosition=lastIndexOf(peek());
-        }
+            if(!isEmpty()){
+                currentPosition=lastIndexOf(peek());
+        }}
         
         
         @Override
         public boolean hasNext() {
-            if(initialCount!=elementCount){
+            if(initialCount!=elementCount ){
                 throw new ConcurrentModificationException();
             }
             return visited <elementsInside;

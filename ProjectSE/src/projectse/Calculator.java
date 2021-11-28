@@ -196,6 +196,7 @@ public class Calculator {
      */
     public List<ComplexNumber> getLifoList(){
        List<ComplexNumber> list=new LinkedList<>();
+       
        for(ComplexNumber c: stack){
            list.add(c);
        }
