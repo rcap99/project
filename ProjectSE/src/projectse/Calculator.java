@@ -104,6 +104,7 @@ public class Calculator {
                 return 0;
             } else if(s.matches("<[a-zA-Z]")){
                 memory.getNumberFromMemory(s.substring(1).toLowerCase());
+                return 0;
             } else if(s.matches("\\+[a-zA-Z]")){
                 try{
                     memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
