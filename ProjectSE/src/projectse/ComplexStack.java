@@ -94,7 +94,7 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
     }
     
     /**
-     *  This method removes the last element of the stack.
+     *  This method removes the last element into the stack.
      *  It allows us to insert a new number if we chose the wrong one. 
      * @throws EmptyStackException it throws an {@link EmptyStackException} if the stack is empty
      */
@@ -105,6 +105,11 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
         pop();
     }
 
+    /** This method returns a new ComplexStackIterator using a LIFO logic to iterate
+     * the elements into the stack
+     * 
+     * @return new ComplexStackIterator
+     */
     @Override
     public synchronized Iterator<ComplexNumber> iterator() {
         return new ComplexStackIterator();

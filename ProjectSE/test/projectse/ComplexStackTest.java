@@ -5,6 +5,8 @@
 package projectse;
 
 import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -70,6 +72,24 @@ public class ComplexStackTest {
        cstack.drop();
    }
    
+   @Test(expected=NoSuchElementException.class)
+   public void testItearator(){
+       cstack.push(new ComplexNumber(1.1,1.1));
+       cstack.push(new ComplexNumber(2.2,2.2));
+       int i=0;
+       Iterator<ComplexNumber> iter=cstack.iterator();
+       while(iter.hasNext()){
+           if(i==0){
+               assertEquals(c2,iter.next());
+               
+           }
+           if(i==1){
+               assertEquals(c1,iter.next());
+           }
+           i++;
+       }
+       iter.next();
+   }
    @After 
    public void cleanUp(){
        cstack=null;
