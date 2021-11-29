@@ -30,6 +30,9 @@ public class CustomOperation implements Operation{
             throw new Exception();
     }
 
+    /**
+     * Execute the sequence of custom operation on the calculator
+     */
     @Override
     public void execute() {
         for (int i=0; i<operations.size();i++){
@@ -59,4 +62,15 @@ public class CustomOperation implements Operation{
         }
         return 0;
     }
+
+    @Override
+    public String toString() {
+        String s="";
+        for(int i=0;i<operations.size();i++){
+            s.concat(operations.get(i));
+            s.concat(",");
+        }
+        return s;
+    }
+    
 }

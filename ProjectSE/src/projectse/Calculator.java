@@ -155,12 +155,14 @@ public class Calculator {
                 CustomOperation op = new CustomOperation(s.split(":")[1], this);
                 String name = s.split(":")[0];
                 if(basicOperations.contains(name) || stackOperations.contains(name)){
-                    
+                    return -3;
                 }
                 ComplexNumber.insertCustomOperation(name, op);
+                return 0;
             } else if(ComplexNumber.getOperationsNames().contains(s)){
                 Operation op = ComplexNumber.getOperation(s);
                 op.execute();
+                return 0;
             }
         }
         return -2;
