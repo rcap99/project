@@ -186,5 +186,13 @@ public class Calculator {
        }
        return list;
     }
+
+    public Set<String> getBasicOperations() {
+        return basicOperations;
+    }
+
+    public Set<String> getStackOperations() {
+        return stackOperations;
+    }
     
 }
