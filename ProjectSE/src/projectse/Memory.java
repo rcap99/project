@@ -59,7 +59,7 @@ public class Memory {
         }
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).add(stack.peek());
+        ComplexNumber temp = variables.get(name).add(stack.pop());
         variables.remove(name);
         variables.put(name, temp);
     }
@@ -75,7 +75,7 @@ public class Memory {
         }
         if(!variables.containsKey(name))
             this.saveNumberInMemory(name);
-        ComplexNumber temp = variables.get(name).subtract(stack.peek());
+        ComplexNumber temp = variables.get(name).subtract(stack.pop());
         variables.remove(name);
         variables.put(name, temp);
     }
