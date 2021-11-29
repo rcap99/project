@@ -1,5 +1,8 @@
 package projectse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The ComplexNumber class manages all the main operations on complex numbers,
  * allowing to operate even on non-complex numbers in case of the absence of the 
@@ -12,6 +15,8 @@ package projectse;
 public class ComplexNumber {  
      private double re;   // the real part
      private double im;   // the imaginary part
+     
+     private static final Map<String, Operation> customOperations = new HashMap<>();
      
     /**
      * Constructor of the ComplexNumber class
@@ -276,5 +281,22 @@ public class ComplexNumber {
         } else{
             return new ComplexNumber(Double.parseDouble(splitted[0]), 0.0);
         }
+    }
+    
+    /**
+     * Saves a custom operation into the collection. If the name of the operation has already been inserted, the operation will be replaced.
+     * @param name The name of the custom operation.
+     * @param op The operation referring to that name.
+     */
+    public static void insertCustomOperation(String name, Operation op){
+        customOperations.put(name, op);
+    }
+    
+    /**
+     * Deletes a custom operation from the collection. If the name of the operation has not been inserted yet, nothing will happen.
+     * @param name The name of the custom operation.
+     */
+    public static void deleteCustomOperation(String name){
+        customOperations.remove(name);
     }
 }
