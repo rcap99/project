@@ -9,14 +9,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author andrea
+ * Represents the operation defined by the user
+ * 
  */
 public class CustomOperation implements Operation{
     
     private List<String> operations;
     private Calculator calculator;
     
+    /**
+     * Costructor of class {@link CustomOperation}, it create an instance of class LinkedList included in {@link java.util} library
+     * @param s contains the sequence of operations 
+     * @param calculator represents the calculator that execute the operations
+     */
     public CustomOperation(String s, Calculator calculator){
         this.operations = new LinkedList<>(); 
         operations.addAll(Arrays.asList(s.split(" ")));
