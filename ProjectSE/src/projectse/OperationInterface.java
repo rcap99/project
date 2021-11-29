@@ -6,8 +6,9 @@ package projectse;
  */
 
 /**
- *
- * @author PRINCIPAL
+ *Operation Interface
+ *Supports the execute and modify commands
+ * @author Group11
  */
 public interface OperationInterface {
     void execute();
