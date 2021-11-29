@@ -34,7 +34,7 @@ public class Memory {
         }
         if(variables.containsKey(name))
             variables.remove(name);
-        variables.put(name, stack.peek());
+        variables.put(name, stack.pop());
     }   
     
     /**
