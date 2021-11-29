@@ -18,7 +18,7 @@ import java.util.Set;
  * @author Group11
  */
 public class Calculator {
-    private Set<String> basicOperations;
+    private Set<String> basicOperations, stackOperations;
     private ComplexStack stack;
     private Memory memory;
     
@@ -29,6 +29,7 @@ public class Calculator {
         stack = new ComplexStack();
         memory = new Memory(stack);
         basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));
+        stackOperations = new HashSet<>(Arrays.asList("dup", "swap", "clear", "over", "drop"));
     }
     
     /**
@@ -150,6 +151,16 @@ public class Calculator {
                     return -1;
                 }
                 return 0;
+            } else if(s.matches("\\w*:.*")){
+                CustomOperation op = new CustomOperation(s.split(":")[1], this);
+                String name = s.split(":")[0];
+                if(basicOperations.contains(name) || stackOperations.contains(name)){
+                    
+                }
+                ComplexNumber.insertCustomOperation(name, op);
+            } else if(ComplexNumber.getOperationsNames().contains(s)){
+                Operation op = ComplexNumber.getOperation(s);
+                op.execute();
             }
         }
         return -2;
