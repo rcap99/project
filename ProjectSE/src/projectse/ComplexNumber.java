@@ -2,6 +2,7 @@ package projectse;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The ComplexNumber class manages all the main operations on complex numbers,
@@ -64,6 +65,7 @@ public class ComplexNumber {
      * returns the String representation of a complex number 
      * @return String "a+bi"
      */
+     @Override
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";
@@ -298,5 +300,22 @@ public class ComplexNumber {
      */
     public static void deleteCustomOperation(String name){
         customOperations.remove(name);
+    }
+    
+    /**
+     * Returns a set of all the names of the inserted custom operations.
+     * @return Set of String of names.
+     */
+    public static Set<String> getOperationsNames(){
+        return customOperations.keySet();
+    }
+    
+    /**
+     * Returns the operation associated with the given name.
+     * @param name of the operation
+     * @return Operation associated with name. Or null if the name is not associated with any operations.
+     */
+    public static Operation getOperation(String name){
+        return customOperations.get(name);
     }
 }
