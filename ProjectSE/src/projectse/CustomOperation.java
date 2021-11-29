@@ -28,6 +28,9 @@ public class CustomOperation implements Operation{
         this.calculator = calculator;
     }
 
+    /**
+     * Execute the sequence of custom operation on the calculator
+     */
     @Override
     public void execute() {
         for (int i=0; i<operations.size();i++){
@@ -40,6 +43,16 @@ public class CustomOperation implements Operation{
     public void modify(String s) {
         operations.clear();
         operations.addAll(Arrays.asList(s.split(" ")));
+    }
+
+    @Override
+    public String toString() {
+        String s="";
+        for(int i=0;i<operations.size();i++){
+            s.concat(operations.get(i));
+            s.concat(",");
+        }
+        return s;
     }
     
 }
