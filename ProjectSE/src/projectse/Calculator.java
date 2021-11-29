@@ -152,7 +152,12 @@ public class Calculator {
                 }
                 return 0;
             } else if(s.matches("\\w*:.*")){
-                CustomOperation op = new CustomOperation(s.split(":")[1], this);
+                Operation op;
+                try{
+                    op = new CustomOperation(s.split(":")[1], this);
+                } catch(Exception ex){
+                    return -4;
+                }
                 String name = s.split(":")[0];
                 if(basicOperations.contains(name) || stackOperations.contains(name)){
                     return -3;
@@ -162,6 +167,28 @@ public class Calculator {
             } else if(ComplexNumber.getOperationsNames().contains(s)){
                 Operation op = ComplexNumber.getOperation(s);
                 op.execute();
+                return 0;
+            } else if(s.matches("modify\\s\\w*:.*")){
+                String name = s.split(" ")[1].split(":")[0];
+                String newOp = s.split(" ")[1].split(":")[1].trim();
+                Operation op = ComplexNumber.getOperation(name);
+                if(op == null){
+                    return -5;
+                }
+                try{
+                    op.modify(newOp);
+                } catch(Exception ex){
+                    return -4;
+                }
+                return 0;
+            }
+            else if(s.matches("del\\s\\w*")){
+                String name = s.split(" ")[1];
+                Operation op = ComplexNumber.getOperation(name);
+                if(op == null){
+                    return -5;
+                }
+                ComplexNumber.deleteCustomOperation(name);
                 return 0;
             }
         }

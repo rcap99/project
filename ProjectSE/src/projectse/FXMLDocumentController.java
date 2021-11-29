@@ -69,6 +69,10 @@ public class FXMLDocumentController implements Initializable {
                 customAlert="Insert a valid operation name";
                 customText="You cannot use \"" + operation.split(":")[0] + "\" as custom operation name";
                 break;
+            case -4:
+                customAlert="Insert a valid operation sequence";
+                customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
+                break;
             default:
                 customAlert="Insert the correct number of elements in the stack";
                 customText="There aren't enough elements in the stack to execute the operation of "+operation;
