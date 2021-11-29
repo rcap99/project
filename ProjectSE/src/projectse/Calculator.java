@@ -154,7 +154,7 @@ public class Calculator {
             } else if(s.matches("\\w*:.*")){
                 Operation op;
                 try{
-                    op = new CustomOperation(s.split(":")[1], this);
+                    op = new CustomOperation(s.split(":")[1].trim(), this);
                 } catch(Exception ex){
                     return -4;
                 }

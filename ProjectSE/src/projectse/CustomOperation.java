@@ -58,7 +58,7 @@ public class CustomOperation implements Operation{
      */
     public int check(){
         for(String s:operations){
-            if(!calculator.getBasicOperations().contains(s)||!calculator.getStackOperations().contains(s)||!ComplexNumber.getOperationsNames().contains(s))
+            if(!calculator.getBasicOperations().contains(s)&&!calculator.getStackOperations().contains(s)&&!ComplexNumber.getOperationsNames().contains(s))
                 return -1;
         }
         return 0;
