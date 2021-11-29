@@ -72,5 +72,15 @@ public class CustomOperation implements Operation{
         }
         return s;
     }
+
+    @Override
+    public String toString() {
+        String s="";
+        for(int i=0;i<operations.size();i++){
+            s.concat(operations.get(i));
+            s.concat(",");
+        }
+        return s;
+    }
     
 }
