@@ -1,5 +1,10 @@
 package projectse;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -318,4 +323,20 @@ public class ComplexNumber {
     public static Operation getOperation(String name){
         return customOperations.get(name);
     }
+    
+    public static void saveOperations(String filename){
+        try (DataOutputStream dout = new DataOutputStream(new BufferedOutputStream (new FileOutputStream(filename)))){
+            for (String key : customOperations.keySet()){
+                Operation o = customOperations.get(key);
+                dout.writeUTF(key+":");
+                dout.writeUTF(o.toString());
+            }
+                
+        } catch (FileNotFoundException ex) {
+            System.out.println("File non trovato");
+        } catch (IOException ex) {
+            System.out.println("Errore nell'output");
+        }
+    }
+    
 }
