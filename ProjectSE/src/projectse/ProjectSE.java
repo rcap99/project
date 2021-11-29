@@ -30,6 +30,7 @@ public class ProjectSE extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+       
     }
     
 }
