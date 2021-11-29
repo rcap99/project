@@ -20,8 +20,8 @@ import java.util.Stack;
  * @see Stack
  * @author Group11
  */
-public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber>{
-
+public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber> {
+    
     /**
      *  Constructor of the class {@link ComplexStack} that calls the constructor of the generic stack data structure included in the {@link java.util} library
      *  @see ComplexStack
@@ -114,6 +114,7 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
     public synchronized Iterator<ComplexNumber> iterator() {
         return new ComplexStackIterator();
     }
+
     
     private class ComplexStackIterator implements Iterator<ComplexNumber>{
         

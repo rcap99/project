@@ -12,5 +12,5 @@ package projectse;
  */
 public interface Operation {
     void execute();
-    void modify();
+    void modify(String s);
 }
