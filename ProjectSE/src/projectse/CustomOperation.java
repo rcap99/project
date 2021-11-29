@@ -22,10 +22,12 @@ public class CustomOperation implements Operation{
      * @param s contains the sequence of operations 
      * @param calculator represents the calculator that execute the operations
      */
-    public CustomOperation(String s, Calculator calculator){
+    public CustomOperation(String s, Calculator calculator) throws Exception{
         this.operations = new LinkedList<>(); 
         operations.addAll(Arrays.asList(s.split(" ")));
         this.calculator = calculator;
+        if(check()==-1)
+            throw new Exception();
     }
 
     @Override
@@ -35,11 +37,26 @@ public class CustomOperation implements Operation{
             calculator.execute(operation);
         }
     }
-
+    /**
+     * This method clears the list of operations defined for this custom operation and inserts a new list of operations
+     * @param s
+     * @return 
+     */
     @Override
-    public void modify(String s) {
+    public int modify(String s) {
         operations.clear();
         operations.addAll(Arrays.asList(s.split(" ")));
+        return check();
     }
-   
+    /**
+     * This method checks if the operations defined for this custom operation are valid
+     * @return 
+     */
+    public int check(){
+        for(String s:operations){
+            if(!calculator.getBasicOperations().contains(s)||!calculator.getStackOperations().contains(s)||!ComplexNumber.getOperationsNames().contains(s))
+                return -1;
+        }
+        return 0;
+    }
 }
