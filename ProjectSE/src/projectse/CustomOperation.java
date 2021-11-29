@@ -46,10 +46,11 @@ public class CustomOperation implements Operation{
      * @return 
      */
     @Override
-    public int modify(String s) {
+    public void modify(String s) throws Exception{
         operations.clear();
         operations.addAll(Arrays.asList(s.split(" ")));
-        return check();
+        if(check()==-1)
+            throw new Exception();
     }
     /**
      * This method checks if the operations defined for this custom operation are valid
@@ -73,14 +74,6 @@ public class CustomOperation implements Operation{
         return s;
     }
 
-    @Override
-    public String toString() {
-        String s="";
-        for(int i=0;i<operations.size();i++){
-            s.concat(operations.get(i));
-            s.concat(",");
-        }
-        return s;
-    }
+
     
 }

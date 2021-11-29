@@ -11,6 +11,6 @@ package projectse;
  * @author Group11
  */
 public interface Operation {
-    void execute();
-    int modify(String s);
+    public void execute();
+    public void modify(String s) throws Exception;
 }
