@@ -188,10 +188,17 @@ public class Calculator {
        }
        return list;
     }
-
+/**
+ * This method returns the set of Basic Operation used in our calculator
+ * @return 
+ */
     public Set<String> getBasicOperations() {
         return basicOperations;
     }
+/**
+ * This method returns the set of Stack Operation used in our calculator
+ * @return 
+ */
 
     public Set<String> getStackOperations() {
         return stackOperations;
