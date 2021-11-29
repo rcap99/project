@@ -5,20 +5,38 @@
 package projectse;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  * @author andrea
  */
-public class CustomOperation {
+public class CustomOperation implements Operation{
     
     private List<String> operations;
+    private Calculator calculator;
     
-    public CustomOperation(String s){
+    public CustomOperation(String s, Calculator calculator){
         this.operations = new LinkedList<>(); 
         operations.addAll(Arrays.asList(s.split(" ")));
+        this.calculator = calculator;
+    }
+
+    @Override
+    public void execute() {
+        for (int i=0; i<operations.size();i++){
+            String operation = operations.get(i);
+            calculator.execute(operation);
+        }
+    }
+
+    @Override
+    public void modify() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
