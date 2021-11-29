@@ -41,7 +41,7 @@ public class Calculator {
         String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)\\s*|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)\\s*\\s*([-+]?\\s*\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
         ComplexNumber c1, c2;
         if(s.matches(patternComplex)){
-            ComplexNumber x = this.parse(s);
+            ComplexNumber x = ComplexNumber.parse(s);
             stack.push(x);
             return 0;
         } else{
@@ -153,34 +153,6 @@ public class Calculator {
             }
         }
         return -2;
-    }
-    
-    /**
-     * Parses a complex number expressed as a String and returns the corresponding ComplexNumber object.
-     * 
-     * @param s String to be parsed.
-     * @return ComplexNumber object from s
-     */
-    public ComplexNumber parse(String s){
-        String[] splitted = s.split("[+|-]");
-        String re, im;
-        if(splitted.length == 3){
-            re = splitted[1];
-            im = splitted[2].replace("i", "");
-            if(s.contains("-") && s.lastIndexOf("-") != 0)
-                return new ComplexNumber(-Double.parseDouble(re), -Double.parseDouble(im));
-            return new ComplexNumber(-Double.parseDouble(re), Double.parseDouble(im));
-        } else if(splitted.length == 2){
-            re = splitted[0];
-            im = splitted[1].replace("i", "");
-            if(s.contains("-") && s.lastIndexOf("-") != 0)
-                return new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
-            return new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
-        } else if(s.contains("i")){
-            return new ComplexNumber(0.0, Double.parseDouble(splitted[0].replace("i", "")));
-        } else{
-            return new ComplexNumber(Double.parseDouble(splitted[0]), 0.0);
-        }
     }
     
     /**

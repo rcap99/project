@@ -40,7 +40,7 @@ public class ComplexNumber {
     }
 
     /**
-     * Gets the imaginry part of a complex number
+     * Gets the imaginary part of a complex number
      * @return the imaginary part of a complex number
      */
     public double getIm() {
@@ -232,5 +232,49 @@ public class ComplexNumber {
      */
     public String getComplexString(){
         return this.toString();
+    }
+    
+        
+    /**
+     * Parses a complex number expressed as a String and returns the corresponding ComplexNumber object.
+     * 
+     * @param s String to be parsed.
+     * @return ComplexNumber object from s
+     */
+    public static ComplexNumber parse(String s){
+        String[] splitted = s.split("[+|-]");
+        String re, im;
+        if(splitted.length == 3){
+            re = splitted[1];
+            im = splitted[2].replace("i", "");
+            if(s.contains("+") && s.indexOf("+") == 0){
+                if(s.contains("-") && s.lastIndexOf("-") != 0)
+                    return new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
+                return new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
+            } else{
+                if(s.contains("-") && s.lastIndexOf("-") != 0)
+                    return new ComplexNumber(-Double.parseDouble(re), -Double.parseDouble(im));
+                return new ComplexNumber(-Double.parseDouble(re), Double.parseDouble(im));
+            }
+        } else if(splitted.length == 2){
+            if(s.startsWith("+") || s.startsWith("-")){
+                if(s.contains("i"))
+                    return new ComplexNumber(0.0, Double.parseDouble(s.replace("i", "")));
+                else{
+                    return new ComplexNumber(Double.parseDouble(s), 0.0);
+                }
+                    
+            } else{
+                re = splitted[0];
+                im = splitted[1].replace("i", "");
+                if(s.contains("-") && s.lastIndexOf("-") != 0)
+                    return new ComplexNumber(Double.parseDouble(re), -Double.parseDouble(im));
+                return new ComplexNumber(Double.parseDouble(re), Double.parseDouble(im));
+            }    
+        } else if(s.contains("i")){
+            return new ComplexNumber(0.0, Double.parseDouble(splitted[0].replace("i", "")));
+        } else{
+            return new ComplexNumber(Double.parseDouble(splitted[0]), 0.0);
+        }
     }
 }
