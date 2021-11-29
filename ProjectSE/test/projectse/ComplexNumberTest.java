@@ -13,6 +13,33 @@ import static org.junit.Assert.*;
  * @author PRINCIPAL
  */
 public class ComplexNumberTest {
+        Calculator c;
+    ComplexNumber n1;
+    ComplexNumber n2;
+    ComplexNumber n3;
+    ComplexNumber n4;
+    ComplexNumber n5;
+    
+    @Before
+    public void setUp(){
+        n1 = new ComplexNumber(1.0, 2.0);
+        n2 = new ComplexNumber(-1.0, 2.0);
+        n3 = new ComplexNumber(1.4, -2.0);
+        n4 = new ComplexNumber(0, 2.0);
+        n5 = new ComplexNumber(1.0, 0);
+    }
+    
+    @Test
+    public void testParse(){
+        assertEquals(n1, ComplexNumber.parse("1 + 2i"));
+        assertEquals(n1, ComplexNumber.parse("1+2i"));
+        assertEquals(n1, ComplexNumber.parse("1 +2i"));
+        assertEquals(n1, ComplexNumber.parse("1+ 2i"));
+        assertEquals(n2, ComplexNumber.parse("-1 + 2i"));
+        assertEquals(n3, ComplexNumber.parse("1.4 - 2i"));
+        assertEquals(n4, ComplexNumber.parse("2i"));
+        assertEquals(n5, ComplexNumber.parse("1"));
+    }
     
     @Test
     public void testAdd(){
@@ -157,6 +184,16 @@ public class ComplexNumberTest {
        ComplexNumber c7=new ComplexNumber(-1,-1);
        Double c8=c7.phase();
        assertEquals("-2.356194490192345", c8.toString());
+    }
+       
+    @After
+    public void cleanUp(){
+        c = null;
+        n1 = null;
+        n2 = null;
+        n3 = null;
+        n4 = null;
+        n5 = null;
     }
 
 }

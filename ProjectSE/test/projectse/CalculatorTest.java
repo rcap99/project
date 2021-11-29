@@ -27,18 +27,6 @@ public class CalculatorTest {
     }
     
     @Test
-    public void testParse(){
-        assertEquals(n1, c.parse("1 + 2i"));
-        assertEquals(n1, c.parse("1+2i"));
-        assertEquals(n1, c.parse("1 +2i"));
-        assertEquals(n1, c.parse("1+ 2i"));
-        assertEquals(n2, c.parse("-1 + 2i"));
-        assertEquals(n3, c.parse("1.4 - 2i"));
-        assertEquals(n4, c.parse("2i"));
-        assertEquals(n5, c.parse("1"));
-    }
-    
-    @Test
     public void testGetLifoList(){
         ComplexStack stack=c.getComplexStack();
         
