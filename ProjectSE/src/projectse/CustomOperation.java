@@ -36,5 +36,5 @@ public class CustomOperation implements Operation{
         operations.clear();
         operations.addAll(Arrays.asList(s.split(" ")));
     }
-    
+   
 }
