@@ -1,16 +1,11 @@
 package projectse;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The ComplexNumber class manages all the main operations on complex numbers,
@@ -325,6 +320,18 @@ public class ComplexNumber {
      */
     public static Operation getOperation(String name){
         return customOperations.get(name);
+    }
+    
+    public static void saveOperations(){
+        String filename = "save.bin";
+        try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))){
+            out.writeObject(customOperations);
+            out.close();
+        } catch (FileNotFoundException ex) {
+             Logger.getLogger(ComplexNumber.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(ComplexNumber.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
 }
