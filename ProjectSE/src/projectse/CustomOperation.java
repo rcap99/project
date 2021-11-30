@@ -73,8 +73,8 @@ public class CustomOperation implements Operation,Serializable{
     public String toString() {
         String s="";
         for(int i=0;i<operations.size();i++){
-            s.concat(operations.get(i));
-            s.concat(" ");
+            s+=operations.get(i);
+            s+=" ";
         }
         return s;
     }
