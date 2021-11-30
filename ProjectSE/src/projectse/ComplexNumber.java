@@ -327,21 +327,4 @@ public class ComplexNumber {
         return customOperations.get(name);
     }
     
-    public static void loadOperations() {
-        Map<String, Operation> ops = new HashMap<>();
-        
-        try(ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream("save.bin")))){
-            ops = (Map<String,Operation>) din.readObject();
-        } catch (FileNotFoundException ex) {
-            System.out.println("File non trovato");
-        } catch (IOException ex) {
-            System.out.println("Errore lettura file");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Classe non trovata");
-        }
-        
-        for(String k : ops.keySet()){
-            ComplexNumber.insertCustomOperation(k, ops.get(k));
-        }
-    }
 }
