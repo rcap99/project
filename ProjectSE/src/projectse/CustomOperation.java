@@ -73,7 +73,7 @@ public class CustomOperation implements Operation{
         String s="";
         for(int i=0;i<operations.size();i++){
             s.concat(operations.get(i));
-            s.concat(",");
+            s.concat(" ");
         }
         return s;
     }
