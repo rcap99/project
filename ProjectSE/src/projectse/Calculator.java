@@ -217,14 +217,14 @@ public class Calculator {
     }
 /**
  * This method returns the set of Basic Operation used in our calculator
- * @return 
+ * @return set
  */
     public Set<String> getBasicOperations() {
         return basicOperations;
     }
 /**
  * This method returns the set of Stack Operation used in our calculator
- * @return 
+ * @return set
  */
 
     public Set<String> getStackOperations() {

@@ -21,6 +21,7 @@ public class CustomOperation implements Operation{
      * Costructor of class {@link CustomOperation}, it create an instance of class LinkedList included in {@link java.util} library
      * @param s contains the sequence of operations 
      * @param calculator represents the calculator that execute the operations
+     * @throws Exception this method generates an @link{Exception} if the user inserts an invalid operation
      */
     public CustomOperation(String s, Calculator calculator) throws Exception{
         this.operations = new LinkedList<>(); 
@@ -42,8 +43,8 @@ public class CustomOperation implements Operation{
     }
     /**
      * This method clears the list of operations defined for this custom operation and inserts a new list of operations
-     * @param s
-     * @return 
+     * @param s a string representing the new sequence of operation associated with this object
+     * 
      */
     @Override
     public void modify(String s) throws Exception{
@@ -54,7 +55,7 @@ public class CustomOperation implements Operation{
     }
     /**
      * This method checks if the operations defined for this custom operation are valid
-     * @return 
+     * @return int
      */
     public int check(){
         for(String s:operations){
@@ -63,7 +64,10 @@ public class CustomOperation implements Operation{
         }
         return 0;
     }
-
+    /**
+     * This method a string representation for this object
+     * @return String
+     */
     @Override
     public String toString() {
         String s="";
@@ -74,4 +78,15 @@ public class CustomOperation implements Operation{
         return s;
     }
 
+    /**
+     * This method returns the list of operations contained in this object 
+     * @return List
+     */
+    public List<String> getOperations() {
+        return operations;
+    }
+    
+    
+
+    
 }
