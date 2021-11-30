@@ -4,11 +4,8 @@
  */
 package projectse;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.List;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
@@ -16,65 +13,35 @@ import static org.junit.Assert.*;
  * @author win10
  */
 public class CustomOperationTest {
-    
-    public CustomOperationTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    private CustomOperation customop;
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
+        customop=new CustomOperation("dup * swap dup * + sqrt", new Calculator());
+    }
+    
+    @Test(expected=Exception.class)
+    public void testModify() throws Exception{
+        customop.modify("dup * swap dup +");
+        List<String> l=customop.getOperations();
+        int i=0;
+        for(String s: l){
+            if(i==0||i==3)
+                assertEquals("dup",s);
+            if(i==1)
+                assertEquals("*",s);
+            if(i==2)
+                assertEquals("swap",s);
+            if(i==4)
+                assertEquals("+",s);
+            i++;
+            
+            }
+        customop.modify("d * swap");
     }
     
     @After
-    public void tearDown() {
+    public void cleanUp(){
+        customop=null;
     }
-
-    /**
-     * Test of execute method, of class CustomOperation.
-     */
-    @Test
-    public void testExecute() {
-        System.out.println("execute");
-        CustomOperation instance = null;
-        instance.execute();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of modify method, of class CustomOperation.
-     */
-    @Test
-    public void testModify() {
-        System.out.println("modify");
-        String s = "";
-        CustomOperation instance = null;
-        int expResult = 0;
-        int result = instance.modify(s);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of check method, of class CustomOperation.
-     */
-    @Test
-    public void testCheck() {
-        System.out.println("check");
-        CustomOperation instance = null;
-        int expResult = 0;
-        int result = instance.check();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
