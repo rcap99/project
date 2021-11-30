@@ -90,10 +90,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void saveOnFile(ActionEvent event) {
+        ComplexNumber.saveOperations();
     }
 
     @FXML
     private void loadFromFile(ActionEvent event) {
+         ComplexNumber.loadOperations();
     }
     
 }

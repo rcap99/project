@@ -4,6 +4,7 @@
  */
 package projectse;
 
+import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
  * Represents the memory where to store the values ​​of the variables 
  * 
  */
-public class Memory {
+public class Memory implements Serializable{
     private HashMap<String, ComplexNumber> variables;
     private ComplexStack stack;
     

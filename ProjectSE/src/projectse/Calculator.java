@@ -4,6 +4,7 @@
  */
 package projectse;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import java.util.Set;
  * 
  * @author Group11
  */
-public class Calculator {
+public class Calculator implements Serializable{
     private Set<String> basicOperations, stackOperations;
     private ComplexStack stack;
     private Memory memory;

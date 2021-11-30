@@ -4,6 +4,7 @@
  */
 package projectse;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Represents the operation defined by the user
  * 
  */
-public class CustomOperation implements Operation{
+public class CustomOperation implements Operation,Serializable{
     
     private List<String> operations;
     private Calculator calculator;

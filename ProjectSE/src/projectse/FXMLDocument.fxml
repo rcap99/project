@@ -23,11 +23,25 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
-            <Button fx:id="executeButton" layoutX="265.0" layoutY="713.0" mnemonicParsing="false" onAction="#execute" style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;" text="Execute" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: blue; -fx-font-weight: bold; -fx-text-fill: white;" text="Custom Operations">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#saveOnFile" text="Save" />
+                      <MenuItem mnemonicParsing="false" onAction="#loadFromFile" text="Reload" />
+                    </items>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </MenuButton>
+                  <Button fx:id="executeButton" mnemonicParsing="false" onAction="#execute" style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;" text="Execute">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <Label text="Customs Operations" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="569.0" />
-      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveOnFile" text="Save" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="530.0" />
-      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#loadFromFile" text="Load" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="530.0" />
    </children>
 </AnchorPane>
