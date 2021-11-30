@@ -39,6 +39,10 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private TableColumn<ComplexNumber, String> tableColumn;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button loadButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,5 +87,13 @@ public class FXMLDocumentController implements Initializable {
         alert.setHeaderText(customText);
         Optional <ButtonType> response=alert.showAndWait();
         }  
+
+    @FXML
+    private void saveOnFile(ActionEvent event) {
+    }
+
+    @FXML
+    private void loadFromFile(ActionEvent event) {
+    }
     
 }
