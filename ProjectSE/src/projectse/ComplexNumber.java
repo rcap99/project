@@ -327,21 +327,6 @@ public class ComplexNumber {
         return customOperations.get(name);
     }
     
-    public static void saveOperations(String filename){
-        try (DataOutputStream dout = new DataOutputStream(new BufferedOutputStream (new FileOutputStream(filename)))){
-            for (String key : customOperations.keySet()){
-                Operation o = customOperations.get(key);
-                dout.writeUTF(key+":");
-                dout.writeUTF(o.toString());
-            }
-                
-        } catch (FileNotFoundException ex) {
-            System.out.println("File non trovato");
-        } catch (IOException ex) {
-            System.out.println("Errore nell'output");
-        }
-    }
-    
     public static void loadOperations() {
         Map<String, Operation> ops = new HashMap<>();
         
