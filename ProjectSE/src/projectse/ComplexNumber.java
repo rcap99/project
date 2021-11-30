@@ -1,10 +1,13 @@
 package projectse;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -339,4 +342,21 @@ public class ComplexNumber {
         }
     }
     
+    public static void loadOperations() {
+        Map<String, Operation> ops = new HashMap<>();
+        
+        try(ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream("save.bin")))){
+            ops = (Map<String,Operation>) din.readObject();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File non trovato");
+        } catch (IOException ex) {
+            System.out.println("Errore lettura file");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Classe non trovata");
+        }
+        
+        for(String k : ops.keySet()){
+            ComplexNumber.insertCustomOperation(k, ops.get(k));
+        }
+    }
 }
