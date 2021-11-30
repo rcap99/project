@@ -26,5 +26,8 @@
             <Button fx:id="executeButton" layoutX="265.0" layoutY="713.0" mnemonicParsing="false" onAction="#execute" style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;" text="Execute" />
          </children>
       </VBox>
+      <Label text="Customs Operations" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="569.0" />
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveOnFile" text="Save" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="530.0" />
+      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#loadFromFile" text="Load" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="530.0" />
    </children>
 </AnchorPane>
