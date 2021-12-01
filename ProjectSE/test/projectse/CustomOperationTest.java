@@ -4,6 +4,7 @@
  */
 package projectse;
 
+import java.util.Arrays;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -13,11 +14,13 @@ import static org.junit.Assert.*;
  * @author win10
  */
 public class CustomOperationTest {
-    private CustomOperation customop;
+    private CustomOperation customop, wrongop;
+    private String operationString;
     
     @Before
     public void setUp() throws Exception{
-        customop=new CustomOperation("dup * swap dup * + sqrt");
+        operationString="dup * swap dup * + sqrt";
+        customop=new CustomOperation(operationString);
     }
     
     @Test(expected=Exception.class)
@@ -40,8 +43,21 @@ public class CustomOperationTest {
         customop.modify("d * swap");
     }
     
+    @Test
+    public void testGetOperations(){
+        assertEquals(customop.getOperations(),Arrays.asList(operationString.split(" ")));
+    }
+    
+    @Test(expected=Exception.class)
+    public void testCheck() throws Exception{
+        wrongop=new CustomOperation("dup * sap dup * + sqrt");
+        assertEquals(customop.check(),0);
+    }
+    
     @After
     public void cleanUp(){
         customop=null;
+        wrongop=null;
+        operationString=null;
     }
 }
