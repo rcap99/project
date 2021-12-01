@@ -5,6 +5,7 @@
 
 package projectse;
 
+import java.io.Serializable;
 import java.util.ConcurrentModificationException;
 import java.util.EmptyStackException;
 import java.util.Iterator;
@@ -20,7 +21,7 @@ import java.util.Stack;
  * @see Stack
  * @author Group11
  */
-public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber> {
+public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber>, Serializable {
     
     /**
      *  Constructor of the class {@link ComplexStack} that calls the constructor of the generic stack data structure included in the {@link java.util} library

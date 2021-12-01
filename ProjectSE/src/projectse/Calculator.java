@@ -19,7 +19,8 @@ import java.util.Set;
  * @author Group11
  */
 public class Calculator implements Serializable{
-    private Set<String> basicOperations, stackOperations;
+    private final Set<String> basicOperations;
+    private final Set<String> stackOperations;
     private ComplexStack stack;
     private Memory memory;
     
@@ -155,7 +156,7 @@ public class Calculator implements Serializable{
             } else if(s.matches("\\w*:.*")){
                 Operation op;
                 try{
-                    op = new CustomOperation(s.split(":")[1].trim(), this);
+                    op = new CustomOperation(s.split(":")[1].trim());
                 } catch(Exception ex){
                     return -4;
                 }
@@ -167,11 +168,14 @@ public class Calculator implements Serializable{
                 return 0;
             } else if(ComplexNumber.getOperationsNames().contains(s)){
                 Operation op = ComplexNumber.getOperation(s);
-                op.execute();
+                for(String o: op.getOperations()){
+                    return execute(o);
+                }
                 return 0;
             } else if(s.matches("modify\\s\\w*:.*")){
-                String name = s.split(" ")[1].split(":")[0];
-                String newOp = s.split(" ")[1].split(":")[1].trim();
+                int startIndex = s.split(" ")[0].length() + 1;
+                String name = s.substring(startIndex).split(":")[0];
+                String newOp = s.substring(startIndex).split(":")[1].trim();
                 Operation op = ComplexNumber.getOperation(name);
                 if(op == null){
                     return -5;

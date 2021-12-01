@@ -6,8 +6,10 @@ package projectse;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents the operation defined by the user
@@ -16,32 +18,21 @@ import java.util.List;
 public class CustomOperation implements Operation,Serializable{
     
     private List<String> operations;
-    private Calculator calculator;
+    private final Set<String> basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));
+    private final Set<String> stackOperations = new HashSet<>(Arrays.asList("dup", "swap", "clear", "over", "drop"));
     
     /**
-     * Costructor of class {@link CustomOperation}, it create an instance of class LinkedList included in {@link java.util} library
+     * Constructor of class {@link CustomOperation}, it create an instance of class LinkedList included in {@link java.util} library
      * @param s contains the sequence of operations 
-     * @param calculator represents the calculator that execute the operations
      * @throws Exception this method generates an @link{Exception} if the user inserts an invalid operation
      */
-    public CustomOperation(String s, Calculator calculator) throws Exception{
+    public CustomOperation(String s) throws Exception{
         this.operations = new LinkedList<>(); 
         operations.addAll(Arrays.asList(s.split(" ")));
-        this.calculator = calculator;
         if(check()==-1)
             throw new Exception();
     }
 
-    /**
-     * Execute the sequence of custom operation on the calculator
-     */
-    @Override
-    public void execute() {
-        for (int i=0; i<operations.size();i++){
-            String operation = operations.get(i);
-            calculator.execute(operation);
-        }
-    }
     /**
      * This method clears the list of operations defined for this custom operation and inserts a new list of operations
      * @param s a string representing the new sequence of operation associated with this object
@@ -60,7 +51,7 @@ public class CustomOperation implements Operation,Serializable{
      */
     public int check(){
         for(String s:operations){
-            if(!calculator.getBasicOperations().contains(s)&&!calculator.getStackOperations().contains(s)&&!ComplexNumber.getOperationsNames().contains(s))
+            if(!basicOperations.contains(s)&&!stackOperations.contains(s)&&!ComplexNumber.getOperationsNames().contains(s))
                 return -1;
         }
         return 0;
@@ -83,6 +74,7 @@ public class CustomOperation implements Operation,Serializable{
      * This method returns the list of operations contained in this object 
      * @return List
      */
+    @Override
     public List<String> getOperations() {
         return operations;
     }
