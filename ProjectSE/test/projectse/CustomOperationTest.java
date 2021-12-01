@@ -17,7 +17,7 @@ public class CustomOperationTest {
     
     @Before
     public void setUp() throws Exception{
-        customop=new CustomOperation("dup * swap dup * + sqrt", new Calculator());
+        customop=new CustomOperation("dup * swap dup * + sqrt");
     }
     
     @Test(expected=Exception.class)
