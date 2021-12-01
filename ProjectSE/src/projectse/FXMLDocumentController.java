@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,46 +57,32 @@ public class FXMLDocumentController implements Initializable {
     private void execute(ActionEvent event) {
         int returnValue=c.execute(textField.getText());
         if(returnValue!=0)
-            alertError(returnValue,textField.getText());
+            c.alertError(returnValue,textField.getText());
         textField.clear();
         obList.clear();
         List<ComplexNumber>l=c.getLifoList();
         obList.addAll(l);
     }
-    private void alertError(int returnValue,String operation){
-        String customText,customAlert;
-        switch(returnValue){
-            case -2:
-                customAlert="Insert a valid operation";
-                customText="Unsopperted operation for " + operation;
-                break;
-            case -3:
-                customAlert="Insert a valid operation name";
-                customText="You cannot use \"" + operation.split(":")[0] + "\" as custom operation name";
-                break;
-            case -4:
-                customAlert="Insert a valid operation sequence";
-                customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
-                break;
-            default:
-                customAlert="Insert the correct number of elements in the stack";
-                customText="There aren't enough elements in the stack to execute the operation of "+operation;
-                break;
-        }
-        Alert alert=new Alert(AlertType.ERROR,customAlert);
-        alert.setTitle("Fatal Error");
+    
+
+    public static void showAlert(AlertType t,String title,String customAlert, String customText){
+        Alert alert=new Alert(t,customAlert);
+        alert.setTitle(title);
         alert.setHeaderText(customText);
         Optional <ButtonType> response=alert.showAndWait();
-        }  
-
+    }
+    
+    
     @FXML
     private void saveOnFile(ActionEvent event) {
         ComplexNumber.saveOperations();
-    }
-
+        c.alertSave();
+}
+    
     @FXML
     private void loadFromFile(ActionEvent event) {
-         ComplexNumber.loadOperations();
+         Set<String> op=ComplexNumber.loadOperations();
+         c.alertReload(op);
     }
     
 }

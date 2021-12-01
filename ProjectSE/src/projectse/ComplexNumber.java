@@ -334,7 +334,7 @@ public class ComplexNumber implements Serializable{
          }
     }
     
-    public static void loadOperations() {
+    public static Set<String> loadOperations() {
         Map<String, Operation> ops = new HashMap<>();
         
         try(ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream("save.bin")))){
@@ -350,5 +350,6 @@ public class ComplexNumber implements Serializable{
         for(String k : ops.keySet()){
             ComplexNumber.insertCustomOperation(k, ops.get(k));
         }
+        return ops.keySet();
     }
 }

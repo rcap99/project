@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import javafx.scene.control.Alert;
+import static projectse.FXMLDocumentController.showAlert;
 
 /**
  * This class represent the calculator and it is directly controlled by the Controller class. It has a member {@link ComplexStack}
@@ -236,4 +238,79 @@ public class Calculator implements Serializable{
         return stackOperations;
     }
     
+    /**
+     * This method prepares the strings that have to be shown when an error occurs
+     * and calls the showAlert method defined in the controller
+     * @param returnValue
+     * @param operation 
+     */
+    public void alertError(int returnValue,String operation){
+        String customText,customAlert;
+        switch(returnValue){
+            case -2:
+                customAlert="Insert a valid operation";
+                customText="Unsopperted operation for " + operation;
+                break;
+            case -3:
+                customAlert="Insert a valid operation name";
+                customText="You cannot use \"" + operation.split(":")[0] + "\" as custom operation name";
+                break;
+            case -4:
+                customAlert="Insert a valid operation sequence";
+                customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
+                break;
+            default:
+                customAlert="Insert the correct number of elements in the stack";
+                customText="There aren't enough elements in the stack to execute the operation of "+operation;
+                break;
+        }
+        showAlert(Alert.AlertType.ERROR,"Fatal Error",customAlert,customText);
+        }  
+    /**
+     * This method prepares the strings that have to be shown to inform the user about the state of the saving operation
+     * and calls the showAlert method defined in the controller
+     */
+    public void alertSave(){
+        Set<String> op=ComplexNumber.getOperationsNames();
+        if (!op.isEmpty()){
+            String customAlert="Operations Saved";
+            String customText="The operation/s of: ";
+            for(String s: op){
+                if(!customText.equalsIgnoreCase("The operation/s of: ")){
+                    customText+= "& ";
+                }
+                customText+=s+" ";
+            }
+        customText+="has/have been saved";
+        showAlert(Alert.AlertType.INFORMATION,"Saving Done",customAlert, customText);
+        }
+        else{
+            String customAlert="Define at least one operation!";
+            String customText="There aren't operations that need to be saved!";
+            showAlert(Alert.AlertType.ERROR,"Saving Failed",customAlert,customText);
+        }
+    }
+    /**
+     * This method prepares the strings that have to be shown to inform the user about the state of the reload operation
+     * and calls the showAlert method defined in the controller 
+     */
+    public void alertReload(Set<String> op){
+        if (!op.isEmpty()){
+            String customAlert="Operations Reloaded";
+            String customText="The operation/s of: ";
+            for(String s: op){
+                if(!customText.equalsIgnoreCase("The operation/s of: ")){
+                    customText+= "& ";
+                }
+                customText+=s+" ";
+            }
+        customText+="has/have been reloaded";
+        showAlert(Alert.AlertType.INFORMATION,"Reloading Done",customAlert, customText);
+        }
+        else{
+            String customAlert="Save at least one operation!";
+            String customText="There aren't operations that need to be reloaded!";
+            showAlert(Alert.AlertType.ERROR,"Reloading Failed",customAlert,customText);
+        }
+    }
 }
