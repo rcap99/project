@@ -168,10 +168,11 @@ public class Calculator implements Serializable{
                 return 0;
             } else if(ComplexNumber.getOperationsNames().contains(s)){
                 Operation op = ComplexNumber.getOperation(s);
+                int returnValue = 0;
                 for(String o: op.getOperations()){
-                    return execute(o);
+                    returnValue = execute(o);
                 }
-                return 0;
+                return returnValue;
             } else if(s.matches("modify\\s\\w*:.*")){
                 int startIndex = s.split(" ")[0].length() + 1;
                 String name = s.substring(startIndex).split(":")[0];
