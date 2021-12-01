@@ -274,15 +274,12 @@ public class Calculator implements Serializable{
     public void alertSave(){
         Set<String> op=ComplexNumber.getOperationsNames();
         if (!op.isEmpty()){
-            String customAlert="Operations Saved";
-            String customText="The operation/s of: ";
+            String customText="Operation/s Saved";
+            String customAlert="The operation/s of: \n";
             for(String s: op){
-                if(!customText.equalsIgnoreCase("The operation/s of: ")){
-                    customText+= "& ";
-                }
-                customText+=s+" ";
+                customAlert+="- "+s+"\n";
             }
-        customText+="has/have been saved";
+        customAlert+="has/have been saved";
         showAlert(Alert.AlertType.INFORMATION,"Saving Done",customAlert, customText);
         }
         else{
@@ -297,15 +294,12 @@ public class Calculator implements Serializable{
      */
     public void alertReload(Set<String> op){
         if (!op.isEmpty()){
-            String customAlert="Operations Reloaded";
-            String customText="The operation/s of: ";
+            String customText="Operation/s Reloaded";
+            String customAlert="The operation/s of: \n";
             for(String s: op){
-                if(!customText.equalsIgnoreCase("The operation/s of: ")){
-                    customText+= "& ";
-                }
-                customText+=s+" ";
+                customAlert+="- "+s+"\n";
             }
-        customText+="has/have been reloaded";
+        customAlert+="has/have been reloaded";
         showAlert(Alert.AlertType.INFORMATION,"Reloading Done",customAlert, customText);
         }
         else{
