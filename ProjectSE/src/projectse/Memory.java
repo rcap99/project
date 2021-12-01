@@ -17,7 +17,7 @@ public class Memory implements Serializable{
     private ComplexStack stack;
     
     /**
-     * Costructor of class {@link Memory}, it create an instance of class HashMap included in {@link java.util} library
+     * Constructor of class {@link Memory}, it create an instance of class HashMap included in {@link java.util} library
      * @param stack represents the complex stack associated with the memory
      */
     public Memory(ComplexStack stack) {
@@ -29,7 +29,7 @@ public class Memory implements Serializable{
      * Takes the top element from the stack and saves it into the HashMap
      * @param name represents the key in the HashMap 
      */
-    public void saveNumberInMemory(String name){
+    public void saveNumberInMemory(String name)throws EmptyStackException{
         if (stack.isEmpty()){
             throw new EmptyStackException();
         }
@@ -54,7 +54,7 @@ public class Memory implements Serializable{
      * storing the result of the addiction into "name"
      * @param name represents the key of element to increment
      */
-    public void incrementNumberFromMemory(String name){
+    public void incrementNumberFromMemory(String name)throws EmptyStackException{
         if (stack.isEmpty()){
             throw new EmptyStackException();
         }
@@ -70,7 +70,7 @@ public class Memory implements Serializable{
      * storing the result of the subtraction into "name"
      * @param name represents the key of element to increment
      */
-    public void decrementNumberFromMemory(String name){
+    public void decrementNumberFromMemory(String name)throws EmptyStackException{
         if (stack.isEmpty()){
             throw new EmptyStackException();
         }
