@@ -355,4 +355,26 @@ public class Calculator implements Serializable{
             showAlert(Alert.AlertType.ERROR,"Saving Failed",customAlert,customText);
         }
     }
+    
+    /**
+     * This method prepares the strings that have to be shown to inform the user about the state of the restoring variables
+     * and calls the showAlert method defined in the controller
+     */
+    public void alertRestoreVariables(){
+        HashMap<String, ComplexNumber> v = this.memory.getVariables();
+        if (v!=null){
+            String customText="Variable/s Restored";
+            String customAlert="The variable/s: \n";
+            for(String k: v.keySet()){
+                customAlert+="- "+k+": "+v.get(k)+"\n";
+            }
+        customAlert+="has/have been restored";
+        showAlert(Alert.AlertType.INFORMATION,"Restoring Done",customAlert, customText);
+        }
+        else{
+            String customAlert="Error in restoring variables!";
+            String customText="It's not possible to restore variable/s!";
+            showAlert(Alert.AlertType.ERROR,"restoring Failed",customAlert,customText);
+        }
+    }
 }
