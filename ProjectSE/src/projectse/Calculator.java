@@ -7,6 +7,7 @@ package projectse;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -201,7 +202,18 @@ public class Calculator implements Serializable{
                 }
                 ComplexNumber.deleteCustomOperation(name);
                 return 0;
+            } else if(s.matches("save")){
+                memory.saveMemory();
+                return 0;
+            } else if(s.matches("restore")){
+                try{
+                    memory.restoreMemory();
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             }
+                
         }
         return -2;
     }
@@ -309,6 +321,38 @@ public class Calculator implements Serializable{
             String customAlert="Save at least one operation!";
             String customText="There aren't operations that need to be reloaded!";
             showAlert(Alert.AlertType.ERROR,"Reloading Failed",customAlert,customText);
+        }
+    }
+    
+    /**
+     * This method prepares the strings that have to be shown to inform the user about the delete of all 
+     * custom operations stored in file and calls the showAlert method defined in the controller
+     */
+    public void alertClear(){
+        String customAlert="The operation/s has/have been deleted";
+        String customText="Operation/s Deleted";
+        showAlert(Alert.AlertType.INFORMATION,"Clear Done",customAlert,customText);
+    }
+    
+    /**
+     * This method prepares the strings that have to be shown to inform the user about the state of the saving variables
+     * and calls the showAlert method defined in the controller
+     */
+    public void alertSaveVariables(){
+        HashMap<String, ComplexNumber> v = this.memory.getVariables();
+        if (v!=null){
+            String customText="Variable/s Saved";
+            String customAlert="The variable/s: \n";
+            for(String k: v.keySet()){
+                customAlert+="- "+k+": "+v.get(k)+"\n";
+            }
+        customAlert+="has/have been saved";
+        showAlert(Alert.AlertType.INFORMATION,"Saving Done",customAlert, customText);
+        }
+        else{
+            String customAlert="Error in saving variables!";
+            String customText="It's not possible to save variable/s!";
+            showAlert(Alert.AlertType.ERROR,"Saving Failed",customAlert,customText);
         }
     }
 }
