@@ -95,7 +95,18 @@ public class Memory implements Serializable{
     public void restoreMemory() throws EmptyStackException{
         variables=variablesStack.pop();
     }
-
+    
+    /**
+     * Returns the HashMap that contains variables
+     * @return variables
+     */
+    public HashMap<String, ComplexNumber> getVariables(){
+        return this.variables;
+    }
+    /**
+     * Returns the stack of variables
+     * @return 
+     */
     public Stack<HashMap<String, ComplexNumber>> getVariablesStack() {
         return variablesStack;
     }
