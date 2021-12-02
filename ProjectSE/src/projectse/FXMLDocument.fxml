@@ -25,7 +25,7 @@
                </padding></TextField>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MenuButton mnemonicParsing="false" style="-fx-background-color: blue; -fx-font-weight: bold; -fx-text-fill: white;" text="Custom Operations">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Custom Operations" textFill="WHITE">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#saveOnFile" text="Save" />
                       <MenuItem mnemonicParsing="false" onAction="#loadFromFile" text="Reload" />
