@@ -322,6 +322,9 @@ public class ComplexNumber implements Serializable{
         return customOperations.get(name);
     }
     
+    /**
+     * Saves all the operations inserted by the user to a file.
+     */
     public static void saveOperations(){
         String filename = "save.bin";
         try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))){
@@ -334,6 +337,10 @@ public class ComplexNumber implements Serializable{
          }
     }
     
+    /**
+     * Loads all the operations previously saved from file.
+     * @return the set of String names of the operations correctly loaded.
+     */
     public static Set<String> loadOperations() {
         Map<String, Operation> ops = new HashMap<>();
         
@@ -353,6 +360,9 @@ public class ComplexNumber implements Serializable{
         return ops.keySet();
     }
     
+    /**
+     * Deletes all saved operations previously saved.
+     */
     public static void clearOperations(){
         File saved = new File("save.bin");
         if(!saved.delete())
