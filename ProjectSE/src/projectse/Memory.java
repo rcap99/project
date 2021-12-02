@@ -87,7 +87,8 @@ public class Memory implements Serializable{
      * This method saves the Map of variables in a stack of variables
      */
     public void saveMemory(){
-        variablesStack.push(variables);
+        HashMap<String, ComplexNumber> variablesCopy = (HashMap<String, ComplexNumber>)variables.clone();
+        variablesStack.push(variablesCopy);
     }
     /**
      * This method restores the Map of variables from the stack of variables
