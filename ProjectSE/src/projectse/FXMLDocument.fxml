@@ -29,6 +29,7 @@
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#saveOnFile" text="Save" />
                       <MenuItem mnemonicParsing="false" onAction="#loadFromFile" text="Reload" />
+                        <MenuItem fx:id="clear" mnemonicParsing="false" onAction="#clearFile" text="Clear File" />
                     </items>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
