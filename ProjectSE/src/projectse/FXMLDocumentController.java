@@ -87,6 +87,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clearFile(ActionEvent event) {
         ComplexNumber.clearOperations();
+        c.alertClear();
     }
     
 }
