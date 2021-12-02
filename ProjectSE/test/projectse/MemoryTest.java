@@ -3,30 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectse;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.Stack;
 import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.*;
 /**
  *
  * @author pc
  */
 public class MemoryTest {
+    private ComplexNumber z;
+    private ComplexNumber x;
+    private ComplexNumber y;
+    private ComplexStack cs;
+    private Memory m;
+    private Stack<HashMap<String,ComplexNumber>> variablesStack;
+    
+    @Before
+    public void setUp(){
+        z = new ComplexNumber(2.4,3.7); 
+        x = new ComplexNumber(1.1,0.3);
+        y = new ComplexNumber(2.4,3.6);
+        cs = new ComplexStack();
+        m = new Memory(cs);
+         
+    }
+    
     @Test
     public void testSaveNumberInMemory(){
-        ComplexNumber z = new ComplexNumber(2.4,3.7); 
-        ComplexStack cs = new ComplexStack();
-        Memory m = new Memory(cs);
         cs.push(z);
         m.saveNumberInMemory("a");
         m.getNumberFromMemory("a");
         assertEquals(z, cs.peek());
     }
-    @Test
+   /* @Test
     public void testIncrementNumberInMemory(){
-        ComplexNumber z = new ComplexNumber(2.4,3.7); 
-        ComplexNumber x = new ComplexNumber(1.1,0.3);
-        ComplexNumber y = new ComplexNumber(2.4,3.6);
-        ComplexStack cs = new ComplexStack();
-        Memory m = new Memory(cs);
         cs.push(z);
         m.saveNumberInMemory("a");
         cs.push(x);
@@ -34,14 +47,9 @@ public class MemoryTest {
         m.getNumberFromMemory("a");
         assertTrue(z.add(x).equals(cs.pop()));
         assertFalse(z.add(y).equals(cs.pop()));
-    }
-    @Test
+    }*/
+    /*@Test
     public void testDecrementNumberInMemory(){
-        ComplexNumber z = new ComplexNumber(2.4,3.7); 
-        ComplexNumber x = new ComplexNumber(1.1,0.7);
-        ComplexNumber y = new ComplexNumber(2.4,3.6);
-        ComplexStack cs = new ComplexStack();
-        Memory m = new Memory(cs);
         cs.push(z);
         m.saveNumberInMemory("a");
         cs.push(x);
@@ -49,5 +57,41 @@ public class MemoryTest {
         m.getNumberFromMemory("a");
         assertTrue(z.subtract(x).equals(cs.pop()));
         assertFalse(z.subtract(y).equals(cs.pop()));
+    }*/
+    
+    @Test
+    public void testSaveMemory(){
+        cs.push(z);
+        m.saveNumberInMemory("a");
+        m.saveMemory();
+       variablesStack=m.getVariablesStack();
+       for(HashMap<String,ComplexNumber> m:variablesStack){
+           for(Entry<String, ComplexNumber> s:m.entrySet()){
+               assertEquals(s.getKey(), "a");
+               assertEquals(s.getValue(),new ComplexNumber(2.4,3.7));
+           }
+       }
+    }
+    @Test
+    public void testRestoreMemory(){
+        cs.push(z);
+        m.saveNumberInMemory("a");
+        m.saveMemory();
+        m.restoreMemory();
+       variablesStack=m.getVariablesStack();
+       for(HashMap<String,ComplexNumber> m:variablesStack){
+           for(Entry<String, ComplexNumber> s:m.entrySet()){
+               assertEquals(s.getKey(), "a");
+               assertEquals(s.getValue(),new ComplexNumber(2.4,3.7));
+           }
+    }
+    }
+    @After
+    public void cleanUp(){
+        z =null;
+        x =null;
+        y =null;
+        cs =null;
+        m =null;
     }
 }

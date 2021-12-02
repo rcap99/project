@@ -95,4 +95,10 @@ public class Memory implements Serializable{
     public void restoreMemory() throws EmptyStackException{
         variables=variablesStack.pop();
     }
+
+    public Stack<HashMap<String, ComplexNumber>> getVariablesStack() {
+        return variablesStack;
+    }
+    
+    
 }
