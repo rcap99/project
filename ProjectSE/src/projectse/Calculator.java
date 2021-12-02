@@ -170,10 +170,13 @@ public class Calculator implements Serializable{
                 return 0;
             } else if(ComplexNumber.getOperationsNames().contains(s)){
                 Operation op = ComplexNumber.getOperation(s);
+                ComplexStack tmpStack = (ComplexStack)stack.clone();
                 int returnValue = 0;
                 for(String o: op.getOperations()){
                     returnValue = execute(o);
                 }
+                if(returnValue != 0)
+                    stack = tmpStack;
                 return returnValue;
             } else if(s.matches("modify\\s\\w*:.*")){
                 int startIndex = s.split(" ")[0].length() + 1;
