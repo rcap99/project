@@ -201,7 +201,18 @@ public class Calculator implements Serializable{
                 }
                 ComplexNumber.deleteCustomOperation(name);
                 return 0;
+            } else if(s.matches("save")){
+                memory.saveMemory();
+                return 0;
+            } else if(s.matches("restore")){
+                try{
+                    memory.restoreMemory();
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                return 0;
             }
+                
         }
         return -2;
     }
