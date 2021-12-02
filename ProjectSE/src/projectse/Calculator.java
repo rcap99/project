@@ -211,7 +211,7 @@ public class Calculator implements Serializable{
                     memory.restoreMemory();
                     this.alertRestoreVariables();
                 } catch(EmptyStackException ex){
-                    return -1;
+                    return -6;
                 }
                 return 0;
             }
@@ -276,6 +276,10 @@ public class Calculator implements Serializable{
             case -4:
                 customAlert="Insert a valid operation sequence";
                 customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
+                break;
+            case -6:
+                customAlert="Save variables first.";
+                customText="There aren't saved variables!";
                 break;
             default:
                 customAlert="Insert the correct number of elements in the stack";
