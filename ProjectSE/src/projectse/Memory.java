@@ -7,6 +7,7 @@ package projectse;
 import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Represents the memory where to store the values ​​of the variables 
@@ -15,6 +16,7 @@ import java.util.HashMap;
 public class Memory implements Serializable{
     private HashMap<String, ComplexNumber> variables;
     private ComplexStack stack;
+    private Stack<HashMap<String,ComplexNumber>> variablesStack;
     
     /**
      * Constructor of class {@link Memory}, it create an instance of class HashMap included in {@link java.util} library
@@ -23,6 +25,7 @@ public class Memory implements Serializable{
     public Memory(ComplexStack stack) {
         this.variables = new HashMap<>();
         this.stack = stack;
+        variablesStack=new Stack<>();
     }
 
     /**
@@ -79,5 +82,17 @@ public class Memory implements Serializable{
         ComplexNumber temp = variables.get(name).subtract(stack.pop());
         variables.remove(name);
         variables.put(name, temp);
+    }
+    /**
+     * This method saves the Map of variables in a stack of variables
+     */
+    public void saveMemory(){
+        variablesStack.push(variables);
+    }
+    /**
+     * This method restores the Map of variables from the stack of variables
+     */
+    public void restoreMemory(){
+        variables=variablesStack.pop();
     }
 }
