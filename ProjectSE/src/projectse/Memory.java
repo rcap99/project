@@ -92,7 +92,7 @@ public class Memory implements Serializable{
     /**
      * This method restores the Map of variables from the stack of variables
      */
-    public void restoreMemory(){
+    public void restoreMemory() throws EmptyStackException{
         variables=variablesStack.pop();
     }
 }
