@@ -20,6 +20,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,9 +42,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<ComplexNumber, String> tableColumn;
     @FXML
-    private Button saveButton;
-    @FXML
-    private Button loadButton;
+    private MenuItem clear;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,6 +82,11 @@ public class FXMLDocumentController implements Initializable {
     private void loadFromFile(ActionEvent event) {
          Set<String> op=ComplexNumber.loadOperations();
          c.alertReload(op);
+    }
+
+    @FXML
+    private void clearFile(ActionEvent event) {
+        ComplexNumber.clearOperations();
     }
     
 }
