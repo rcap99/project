@@ -95,4 +95,12 @@ public class Memory implements Serializable{
     public void restoreMemory(){
         variables=variablesStack.pop();
     }
+    
+    /**
+     * Return the HashMap that contains variables
+     * @return variables
+     */
+    public HashMap<String, ComplexNumber> getVariables(){
+        return this.variables;
+    }
 }
