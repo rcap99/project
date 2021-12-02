@@ -204,10 +204,12 @@ public class Calculator implements Serializable{
                 return 0;
             } else if(s.matches("save")){
                 memory.saveMemory();
+                this.alertSaveVariables();
                 return 0;
             } else if(s.matches("restore")){
                 try{
                     memory.restoreMemory();
+                    this.alertRestoreVariables();
                 } catch(EmptyStackException ex){
                     return -1;
                 }
