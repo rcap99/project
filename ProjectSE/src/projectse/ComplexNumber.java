@@ -340,16 +340,22 @@ public class ComplexNumber implements Serializable{
         try(ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream("save.bin")))){
             ops = (Map<String,Operation>) din.readObject();
         } catch (FileNotFoundException ex) {
-            System.out.println("File non trovato");
+            System.out.println("File not found");
         } catch (IOException ex) {
-            System.out.println("Errore lettura file");
+            System.out.println("Error reading file");
         } catch (ClassNotFoundException ex) {
-            System.out.println("Classe non trovata");
+            System.out.println("Class not found");
         }
         
         for(String k : ops.keySet()){
             ComplexNumber.insertCustomOperation(k, ops.get(k));
         }
         return ops.keySet();
+    }
+    
+    public static void clearOperations(){
+        File saved = new File("save.bin");
+        if(!saved.delete())
+            System.out.println("Error clearing file");
     }
 }
