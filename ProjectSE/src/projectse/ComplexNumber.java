@@ -365,7 +365,7 @@ public class ComplexNumber implements Serializable{
      */
     public static void clearOperations(){
         File saved = new File("save.bin");
-        if(!saved.delete())
+        if(saved.exists() && !saved.delete())
             System.out.println("Error clearing file");
     }
 }
