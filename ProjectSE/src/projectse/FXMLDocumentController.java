@@ -4,9 +4,8 @@
  */
 package projectse;
 
+
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -50,7 +49,7 @@ public class FXMLDocumentController implements Initializable {
         tableColumn.setCellValueFactory(new PropertyValueFactory("complexString"));
         stackView.setItems(obList);
         stackView.setPlaceholder(new Label("Empty stack"));
-    }    
+        }    
 
     @FXML
     private void execute(ActionEvent event) {
@@ -58,9 +57,11 @@ public class FXMLDocumentController implements Initializable {
         if(returnValue!=0)
             c.alertError(returnValue,textField.getText());
         textField.clear();
-        obList.clear();
-        List<ComplexNumber>l=c.getLifoList();
-        obList.addAll(l);
+        if(c.getComplexStack().hasChanged()){
+            c.getComplexStack().notifyObservers();
+            obList.clear();
+            obList.addAll(c.getComplexStack());
+        }
     }
     
 

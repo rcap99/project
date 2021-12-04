@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import static projectse.FXMLDocumentController.showAlert;
 
@@ -109,7 +111,11 @@ public class Calculator implements Serializable{
                 }
                 return 0;
             } else if(s.matches("<[a-zA-Z]")){
-                memory.getNumberFromMemory(s.substring(1).toLowerCase());
+                try {
+                    memory.getNumberFromMemory(s.substring(1).toLowerCase());
+                } catch (Exception ex) {
+                    return -6;
+                }
                 return 0;
             } else if(s.matches("\\+[a-zA-Z]")){
                 try{
@@ -232,7 +238,7 @@ public class Calculator implements Serializable{
      * Returns the LIFO (last in - first out) representation of the stack.
      * @return List of ComplexNumber in LIFO order
      */
-    public List<ComplexNumber> getLifoList(){
+   /* public List<ComplexNumber> getLifoList(){
        List<ComplexNumber> list=new LinkedList<>();
        
        for(ComplexNumber c: stack){
@@ -240,6 +246,8 @@ public class Calculator implements Serializable{
        }
        return list;
     }
+    */
+  
 /**
  * This method returns the set of Basic Operation used in our calculator
  * @return set
@@ -279,7 +287,7 @@ public class Calculator implements Serializable{
                 break;
             case -6:
                 customAlert="Save variables first.";
-                customText="There aren't saved variables!";
+                customText="There aren't saved variables or the selected variable is empty!";
                 break;
             default:
                 customAlert="Insert the correct number of elements in the stack";

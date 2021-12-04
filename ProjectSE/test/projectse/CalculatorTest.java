@@ -4,9 +4,8 @@
  */
 package projectse;
 
-import java.util.List;
 import org.junit.*;
-import static org.junit.Assert.*;
+
 
 public class CalculatorTest {
     Calculator c;
@@ -26,7 +25,7 @@ public class CalculatorTest {
         n5 = new ComplexNumber(1.0, 0);
     }
     
-    @Test
+  /*  @Test
     public void testGetLifoList(){
         ComplexStack stack=c.getComplexStack();
         
@@ -42,7 +41,8 @@ public class CalculatorTest {
         assertEquals(n3,l.get(2));
         assertEquals(n2,l.get(3));
         assertEquals(n1,l.get(4));
-    }
+    }*/
+    
     @After
     public void cleanUp(){
         c = null;

@@ -20,15 +20,15 @@ import java.util.Stack;
  * @see Stack
  * @author Group11
  */
-public class ComplexStack extends Stack<ComplexNumber> implements Iterable<ComplexNumber> {
-    
+public class ComplexStack extends StackBase implements Iterable<ComplexNumber>{
+    private ObservableInterface co;
     /**
      *  Constructor of the class {@link ComplexStack} that calls the constructor of the generic stack data structure included in the {@link java.util} library
      *  @see ComplexStack
      */
     public ComplexStack() {
         super();
-        
+        co=new ComplexObservable();
     }
     
     /**
@@ -44,6 +44,8 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
         }
         ComplexNumber b=peek();
         push(b);
+        setChanged();
+        
     }
         
     /**
@@ -63,6 +65,8 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
         ComplexNumber b2=pop();
         push(b1);
         push(b2);
+        setChanged();
+        
     }
     
     /**
@@ -83,6 +87,8 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
         push(secondlast);
         push(last);
         push(secondlast);
+        setChanged();
+        
     }
     /**
     *   This method overrides the clear method of the {@link java.util} library.
@@ -91,6 +97,8 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
     @Override
     public void clear(){
         super.clear();
+        setChanged();
+        
     }
     
     /**
@@ -103,9 +111,10 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
             throw new EmptyStackException();
         }
         pop();
+        setChanged();
+        
     }
-
-    /** This method returns a new ComplexStackIterator using a LIFO logic to iterate
+     /** This method returns a new ComplexStackIterator using a LIFO logic to iterate
      * the elements into the stack
      * 
      * @return new ComplexStackIterator
@@ -114,9 +123,8 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
     public synchronized Iterator<ComplexNumber> iterator() {
         return new ComplexStackIterator();
     }
-
-    
-    private class ComplexStackIterator implements Iterator<ComplexNumber>{
+        
+      private class ComplexStackIterator implements Iterator<ComplexNumber>{
         
         private int visited=0;
         private int currentPosition;
@@ -149,7 +157,6 @@ public class ComplexStack extends Stack<ComplexNumber> implements Iterable<Compl
             visited++;
             return cn;
         }
-        
     }
     
 }

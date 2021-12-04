@@ -46,7 +46,10 @@ public class Memory implements Serializable{
      * @param name represent the key of element to push
      * 
      */
-    public void getNumberFromMemory(String name){
+    public void getNumberFromMemory(String name) throws Exception{
+        if (variables.isEmpty() || !variables.containsKey(name)){
+            throw new Exception();
+        }
         ComplexNumber temp = variables.get(name);
         if(temp!=null)
             stack.add(temp);
