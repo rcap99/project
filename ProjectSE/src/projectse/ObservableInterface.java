@@ -8,7 +8,7 @@ import java.util.Observer;
 
 /**
  *
- * @author win10
+ * @author Group11
  */
 public interface ObservableInterface {
     public void addObserver(Observer o);

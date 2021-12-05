@@ -9,7 +9,7 @@ import java.util.Observer;
 
 /**
  *
- * @author win10
+ * @author Group11
  */
 public class ComplexObservable extends Observable implements ObservableInterface{
 

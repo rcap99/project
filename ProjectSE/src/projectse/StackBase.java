@@ -13,7 +13,7 @@ import java.util.function.UnaryOperator;
 
 /**
  *
- * @author win10
+ * @author Group11
  */
 public class StackBase extends Stack<ComplexNumber> implements ObservableInterface{
     private ObservableInterface co;
@@ -26,7 +26,6 @@ public class StackBase extends Stack<ComplexNumber> implements ObservableInterfa
     @Override
     public synchronized ComplexNumber peek() {
         ComplexNumber returnValue= super.peek(); //To change body of generated methods, choose Tools | Templates.
-        setChanged();
         
         return returnValue;
     }
