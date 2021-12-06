@@ -201,6 +201,41 @@ public class ComplexNumberTest {
         assertEquals(n4.logarithm(),new ComplexNumber(0.6931471805599453,1.5707963267948966));
         assertEquals(n5.logarithm(),new ComplexNumber(0,0));
     }
+    
+        @Test
+    public void testSin(){
+        assertEquals(n1.sin(), new ComplexNumber(3.165778513216168,1.9596010414216063));
+        assertEquals(n2.sin(),new ComplexNumber(-3.165778513216168,1.9596010414216063));
+        assertEquals(n3.sin(),new ComplexNumber(3.7074547279421126,-0.6164471012197608));
+        assertEquals(n4.sin(),new ComplexNumber(0.0,3.626860407847019));
+        assertEquals(n5.sin (),new ComplexNumber(0.8414709848078965,0.0));
+    }
+    
+    @Test
+    public void testCos(){
+        assertEquals(n1.cos(), new ComplexNumber(2.0327230070196656,-3.0518977991518));
+        assertEquals(n2.cos(),new ComplexNumber(2.0327230070196656,3.0518977991518));
+        assertEquals(n3.cos(),new ComplexNumber(0.6394496526450827,3.5740886096186815));
+    }
+   
+    @Test
+    public void testTan(){
+        assertEquals(n1.tan(), new ComplexNumber(0.03381282607989666,1.0147936161466338));
+        assertEquals(n2.tan(),new ComplexNumber(-0.03381282607989666,1.0147936161466338));
+        assertEquals(n3.tan(),new ComplexNumber(0.012705302920781703,-1.0350415813550153));
+        assertEquals(n4.tan(),new ComplexNumber(0.0,0.9640275800758169));
+        assertEquals(n5.tan(),new ComplexNumber(1.5574077246549018,0.0));
+    }
+  
+    @Test
+    public void testExp(){
+        assertEquals(n1.exp(), new ComplexNumber(-1.1312043837568135,2.4717266720048188));
+        assertEquals(n2.exp(),new ComplexNumber(-0.1530918656742263,0.33451182923926226));
+        assertEquals(n3.exp(),new ComplexNumber(-1.6875586377684881,-3.6873828951154524));
+        assertEquals(n4.exp(),new ComplexNumber(-0.4161468365471424,0.9092974268256817));
+        assertEquals(n5.exp(),new ComplexNumber(2.718281828459045,0.0));
+    }
+    
     @After
     public void cleanUp(){
         c = null;
