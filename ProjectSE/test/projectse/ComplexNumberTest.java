@@ -244,6 +244,13 @@ public class ComplexNumberTest {
         assertEquals(n5.arcTan(),new ComplexNumber(0.7853981633974483,0));
     }
     
+    @Test
+    public void testArccos(){
+        ComplexNumber z = new ComplexNumber(1.1437177404024204,-1.528570919480998);
+        assertEquals(z, n1.arccos());
+    }
+
+    
     @After
     public void cleanUp(){
         c = null;
