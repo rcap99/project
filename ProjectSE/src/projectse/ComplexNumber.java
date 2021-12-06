@@ -368,4 +368,21 @@ public class ComplexNumber implements Serializable{
         if(saved.exists() && !saved.delete())
             System.out.println("Error clearing file");
     }
+    
+    /**
+    * Calculates the power of ComplexNumber to the passed integer.
+    * @param power The power.
+    * @return a ComplexNumber which is (z)^power
+    */
+    public ComplexNumber power(int power)
+    {
+        ComplexNumber result = new ComplexNumber(this.getRe(),this.getIm());
+        for(int i = 1; i < power; i++)
+        {
+            double real = result.re*this.re - result.im*this.im;
+            double imaginary = result.re*this.im + result.im*this.re;
+            result = new ComplexNumber(real,imaginary);
+        }
+        return result;
+    }
 }
