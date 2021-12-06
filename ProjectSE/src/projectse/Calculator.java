@@ -26,6 +26,7 @@ import static projectse.FXMLDocumentController.showAlert;
 public class Calculator implements Serializable{
     private final Set<String> basicOperations;
     private final Set<String> stackOperations;
+    private final Set<String> trascendentalOperations;
     private ComplexStack stack;
     private Memory memory;
     
@@ -37,6 +38,7 @@ public class Calculator implements Serializable{
         memory = new Memory(stack);
         basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));
         stackOperations = new HashSet<>(Arrays.asList("dup", "swap", "clear", "over", "drop"));
+        trascendentalOperations = new HashSet<>(Arrays.asList("abs", "phase", "sin", "cos", "tan", "asin", "acos", "atan", "pow", "log", "exp"));
     }
     
     /**
@@ -221,7 +223,56 @@ public class Calculator implements Serializable{
                 }
                 return 0;
             }
-                
+            else if(trascendentalOperations.contains(s)){
+                try{
+                    c1 = this.stack.pop();
+                } catch(EmptyStackException ex){
+                    return -1;
+                }
+                switch(s){
+                    case "abs":
+                        stack.push(new ComplexNumber(c1.abs(), 0));
+                        break;
+                    case "phase":
+                        this.stack.push(new ComplexNumber(c1.phase(), 0));
+                        break;
+                    case "sin":
+                        this.stack.push(c1.sin());
+                        break;
+                    case "cos":
+                        this.stack.push(c1.cos());
+                        break;
+                    case "tan":
+                        this.stack.push(c1.tan());
+                        break;
+                    case "asin":
+                        this.stack.push(c1.arcSin());
+                        break;
+                    case "acos":
+                        this.stack.push(c1.arcCos());
+                        break;
+                    case "atan":
+                        this.stack.push(c1.arcTan());
+                        break;
+                    case "log":
+                        this.stack.push(c1.logarithm());
+                        break;
+                    case "pow":
+                        ComplexNumber exp;
+                        try{
+                            exp = stack.pop();
+                        } catch(EmptyStackException ex){
+                            stack.push(c1);
+                            return -2;
+                        }
+                        this.stack.push(c1.power(exp.getRe()));
+                        break;
+                    case "exp":
+                        stack.push(c1.exp());
+                        break;
+                }
+                return 0;
+            }     
         }
         return -2;
     }
