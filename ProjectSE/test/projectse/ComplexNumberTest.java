@@ -189,9 +189,9 @@ public class ComplexNumberTest {
     @Test
     public void testPower(){
         ComplexNumber c1=new ComplexNumber(2,2);
-        assertEquals(c1.power(3), new ComplexNumber(-16,16));
-        assertEquals(n1.power(4),new ComplexNumber(-7,-24));
-        assertEquals(n3.power(2),new ComplexNumber(-2.04,-5.6));
+        assertEquals(c1.power(Double.valueOf(3)), new ComplexNumber(-16,16));
+        assertEquals(n1.power(Double.valueOf(4)),new ComplexNumber(-7,-24));
+        assertEquals(n3.power(Double.valueOf(2)),new ComplexNumber(-2.04,-5.6));
     }
     @Test
     public void testLogarithm(){
