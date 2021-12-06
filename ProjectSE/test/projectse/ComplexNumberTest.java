@@ -235,6 +235,14 @@ public class ComplexNumberTest {
         assertEquals(n4.exp(),new ComplexNumber(-0.4161468365471424,0.9092974268256817));
         assertEquals(n5.exp(),new ComplexNumber(2.718281828459045,0.0));
     }
+    @Test
+    public void testArcTan(){
+        assertEquals(n1.arcTan(),new ComplexNumber(1.3389725222944935,0.4023594781085251));
+        assertEquals(n2.arcTan(),new ComplexNumber(-1.3389725222944935,0.4023594781085251));
+        assertEquals(n3.arcTan(),new ComplexNumber(1.3138364862956298,-0.3272657532959752));
+        assertEquals(n4.arcTan(),new ComplexNumber(1.5707963267948966,0.5493061443340549));
+        assertEquals(n5.arcTan(),new ComplexNumber(0.7853981633974483,0));
+    }
     
     @After
     public void cleanUp(){
