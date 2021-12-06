@@ -285,6 +285,9 @@ public class Calculator implements Serializable{
                 customAlert="Insert a valid operation sequence";
                 customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
                 break;
+            case -5:
+                customAlert="There isn't a valid custom operation for the inserted name";
+                customText="The custom operation of \"" + operation.split(":")[1]+"\" is invalid";
             case -6:
                 customAlert="Save variables first.";
                 customText="There aren't saved variables or the selected variable is empty!";
