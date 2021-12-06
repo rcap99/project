@@ -419,4 +419,15 @@ public class ComplexNumber implements Serializable{
      public ComplexNumber exp() {
         return new ComplexNumber(Math.exp(re) * Math.cos(im), Math.exp(re) * Math.sin(im));
     }
+     
+        /**
+     * This method return the complex logarithm for this ComplexNumber
+     * @return a ComplexNumber
+     */
+     public ComplexNumber logarithm(){
+         ComplexNumber c=this;
+         double mod=this.abs();
+         double phase=this.phase();
+         return new ComplexNumber(Math.log(mod),phase);
+     } 
 }
