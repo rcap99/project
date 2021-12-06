@@ -197,7 +197,8 @@ public class ComplexNumber implements Serializable{
 
       return csqrt;
     }
-     
+   
+
     /**
      * Calculates the hash code of a complex number
      * @return the hash code of the complex number
@@ -287,6 +288,7 @@ public class ComplexNumber implements Serializable{
             return new ComplexNumber(Double.parseDouble(splitted[0]), 0.0);
         }
     }
+    
     
     /**
      * Saves a custom operation into the collection. If the name of the operation has already been inserted, the operation will be replaced.

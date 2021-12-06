@@ -5,7 +5,6 @@
 package projectse;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.Stack;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -32,14 +31,14 @@ public class MemoryTest {
     }
     
     @Test
-    public void testSaveNumberInMemory(){
+    public void testSaveNumberInMemory() throws Exception{
         cs.push(z);
         m.saveNumberInMemory("a");
         m.getNumberFromMemory("a");
         assertEquals(z, cs.peek());
     }
     @Test
-    public void testIncrementNumberInMemory(){
+    public void testIncrementNumberInMemory() throws Exception{
         cs.push(z);
         m.saveNumberInMemory("a");
         cs.push(x);
@@ -48,7 +47,7 @@ public class MemoryTest {
         assertTrue(z.add(x).equals(cs.pop()));
     }
     @Test
-    public void testDecrementNumberInMemory(){
+    public void testDecrementNumberInMemory() throws Exception{
         cs.push(z);
         m.saveNumberInMemory("a");
         cs.push(x);
