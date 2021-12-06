@@ -420,8 +420,8 @@ public class ComplexNumber implements Serializable{
         return new ComplexNumber(Math.exp(re) * Math.cos(im), Math.exp(re) * Math.sin(im));
     }
      
-        /**
-     * This method return the complex logarithm for this ComplexNumber
+    /**
+     * This method returns the complex logarithm for this ComplexNumber
      * @return a ComplexNumber
      */
      public ComplexNumber logarithm(){
@@ -429,4 +429,11 @@ public class ComplexNumber implements Serializable{
          double phase=this.phase();
          return new ComplexNumber(Math.log(mod),phase);
      } 
+    /**
+     * This method returns the arctangent of this ComplexNumber
+     * @return a ComplexNumber
+     */
+     public ComplexNumber arctan(){
+        return new ComplexNumber((0), 1/2).multiplication(new ComplexNumber(Math.log((1+this.getIm())/(1-this.getIm())),0));
+     }
 }
