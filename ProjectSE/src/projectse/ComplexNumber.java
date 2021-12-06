@@ -433,7 +433,11 @@ public class ComplexNumber implements Serializable{
      * This method returns the arctangent of this ComplexNumber
      * @return a ComplexNumber
      */
-     public ComplexNumber arctan(){
-        return new ComplexNumber((0), 1/2).multiplication(new ComplexNumber(Math.log((1+this.getIm())/(1-this.getIm())),0));
+     public ComplexNumber arcTan(){
+        ComplexNumber c1 = new ComplexNumber(0.0,-1.0);    
+        ComplexNumber c2 = new ComplexNumber(this.re,this.im-1.0);
+        ComplexNumber c3 = new ComplexNumber(-this.re,-this.im-1.0);
+        ComplexNumber c4= new ComplexNumber(2.0, 0.0);   
+        return c1.multiplication(c2.division(c3).logarithm()).division(c4);
      }
 }
