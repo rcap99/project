@@ -425,7 +425,6 @@ public class ComplexNumber implements Serializable{
      * @return a ComplexNumber
      */
      public ComplexNumber logarithm(){
-         ComplexNumber c=this;
          double mod=this.abs();
          double phase=this.phase();
          return new ComplexNumber(Math.log(mod),phase);
