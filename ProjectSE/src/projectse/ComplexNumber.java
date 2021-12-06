@@ -370,4 +370,53 @@ public class ComplexNumber implements Serializable{
         if(saved.exists() && !saved.delete())
             System.out.println("Error clearing file");
     }
+    
+    /**
+    * Calculates the power of ComplexNumber to the passed integer.
+    * @param power The power.
+    * @return a ComplexNumber which is (z)^power
+    */
+    public ComplexNumber power(int power)
+    {
+        ComplexNumber result = new ComplexNumber(this.getRe(),this.getIm());
+        for(int i = 1; i < power; i++)
+        {
+            double real = result.re*this.re - result.im*this.im;
+            double imaginary = result.re*this.im + result.im*this.re;
+            result = new ComplexNumber(real,imaginary);
+        }
+        return result;
+    }
+    
+     /**
+     * Calculates in radians the sin of a number
+     * @return the sin in radians
+     */
+     public ComplexNumber sin() {
+        return new ComplexNumber(Math.sin(re) * Math.cosh(im), Math.cos(re) * Math.sinh(im));
+    }
+     
+     /**
+      * Calculates in radians the cos of a number
+      * @return the cos in radians
+      */
+     public ComplexNumber cos() {
+        return new ComplexNumber(Math.cos(re) * Math.cosh(im), -Math.sin(re) * Math.sinh(im));
+    }
+     
+     /**
+      * Calculates in radians the tan of a number
+      * @return the tan in radians
+      */
+     public ComplexNumber tan() {
+        return sin().division(cos());
+    }
+     
+     /**
+      * Calculates expponential of a complex number
+      * @return a new Complex Number whose value is the complex exponential of this
+      */
+     public ComplexNumber exp() {
+        return new ComplexNumber(Math.exp(re) * Math.cos(im), Math.exp(re) * Math.sin(im));
+    }
 }

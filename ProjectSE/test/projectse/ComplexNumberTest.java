@@ -186,6 +186,14 @@ public class ComplexNumberTest {
        assertEquals("-2.356194490192345", c8.toString());
     }
        
+    @Test
+    public void testPower(){
+        ComplexNumber c1=new ComplexNumber(2,2);
+        assertEquals(c1.power(3), new ComplexNumber(-16,16));
+        assertEquals(n1.power(4),new ComplexNumber(-7,-24));
+        assertEquals(n3.power(2),new ComplexNumber(-2.04,-5.6));
+    }
+       
     @After
     public void cleanUp(){
         c = null;
