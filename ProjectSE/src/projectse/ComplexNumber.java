@@ -440,4 +440,18 @@ public class ComplexNumber implements Serializable{
         ComplexNumber c4= new ComplexNumber(2.0, 0.0);   
         return c1.multiplication(c2.division(c3).logarithm()).division(c4);
      }
+     
+     /**
+      * This method returns the arccosine of this ComplexNumber
+      * @return a ComplexNumber
+      */
+     public ComplexNumber arccos(){
+         ComplexNumber imOne = new ComplexNumber(0,1);
+         ComplexNumber one = new ComplexNumber(1,0);
+         ComplexNumber result;
+         ComplexNumber c = one.subtract(this.multiplication(this));
+         ComplexNumber z = this.add(imOne.multiplication(c.sqrt()));
+         result = imOne.invertSign().multiplication(z.logarithm());
+         return result;
+     }
 }
