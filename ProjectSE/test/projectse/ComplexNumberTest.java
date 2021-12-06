@@ -193,7 +193,14 @@ public class ComplexNumberTest {
         assertEquals(n1.power(4),new ComplexNumber(-7,-24));
         assertEquals(n3.power(2),new ComplexNumber(-2.04,-5.6));
     }
-       
+    @Test
+    public void testLogarithm(){
+        assertEquals(n1.logarithm(),new ComplexNumber(0.8047189562170503,1.1071487177940904));
+        assertEquals(n2.logarithm(),new ComplexNumber(0.8047189562170503,2.0344439357957027));
+        assertEquals(n3.logarithm(),new ComplexNumber(0.8925352405386292,-0.960070362405688));
+        assertEquals(n4.logarithm(),new ComplexNumber(0.6931471805599453,1.5707963267948966));
+        assertEquals(n5.logarithm(),new ComplexNumber(0,0));
+    }
     @After
     public void cleanUp(){
         c = null;
