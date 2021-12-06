@@ -376,7 +376,7 @@ public class ComplexNumber implements Serializable{
     * @param power The power.
     * @return a ComplexNumber which is (z)^power
     */
-    public ComplexNumber power(int power)
+    public ComplexNumber power(Double power)
     {
         ComplexNumber result = new ComplexNumber(this.getRe(),this.getIm());
         for(int i = 1; i < power; i++)
