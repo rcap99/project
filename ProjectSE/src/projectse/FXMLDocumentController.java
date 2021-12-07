@@ -24,6 +24,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import projectse.alert.AlertClear;
+import projectse.alert.AlertReload;
+import projectse.alert.AlertSaveFile;
+import projectse.alert.AlertStrategy;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -54,8 +58,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void execute(ActionEvent event) {
         int returnValue=c.execute(textField.getText());
-        if(returnValue!=0)
-            c.alertError(returnValue,textField.getText());
+        /*if(returnValue!=0)
+            c.alertError(returnValue,textField.getText());*/
         textField.clear();
         if(c.getComplexStack().hasChanged()){
             c.getComplexStack().notifyObservers();
@@ -76,19 +80,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void saveOnFile(ActionEvent event) {
         ComplexNumber.saveOperations();
-        c.alertSave();
+        c.setAlert(new AlertSaveFile());
+        c.alert();
 }
     
     @FXML
     private void loadFromFile(ActionEvent event) {
          Set<String> op=ComplexNumber.loadOperations();
-         c.alertReload(op);
+         c.setAlert(new AlertReload(op));
+         c.alert();
     }
 
     @FXML
     private void clearFile(ActionEvent event) {
         ComplexNumber.clearOperations();
-        c.alertClear();
+        c.setAlert(new AlertClear());
+        c.alert();
     }
     
 }

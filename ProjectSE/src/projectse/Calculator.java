@@ -7,15 +7,11 @@ package projectse;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.EmptyStackException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 import static projectse.FXMLDocumentController.showAlert;
+import projectse.alert.*;
+
 
 /**
  * This class represent the calculator and it is directly controlled by the Controller class. It has a member {@link ComplexStack}
@@ -29,6 +25,7 @@ public class Calculator implements Serializable{
     private final Set<String> trascendentalOperations;
     private ComplexStack stack;
     private Memory memory;
+    private AlertStrategy alert;
     
     /**
      *  Default constructor for Calculator that creates empty {@link ComplexStack} and {@link Memory} objects.
@@ -59,6 +56,8 @@ public class Calculator implements Serializable{
                 try{
                     c1 = this.stack.pop();
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 switch(s){
@@ -67,6 +66,8 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
+                            alert=new AlertError1(s);
+                            alert();
                             return -1;
                         }    
                         this.stack.push(c1.add(c2));
@@ -76,6 +77,8 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
+                            alert=new AlertError1(s);
+                            alert();
                             return -1;
                         }
                         this.stack.push(c2.subtract(c1));
@@ -85,6 +88,8 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
+                            alert=new AlertError1(s);
+                            alert();
                             return -1;
                         }
                         this.stack.push(c1.multiplication(c2));
@@ -94,6 +99,8 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
+                            alert=new AlertError1(s);
+                            alert();
                             return -1;
                         }
                         this.stack.push(c2.division(c1));
@@ -109,6 +116,8 @@ public class Calculator implements Serializable{
                 try{
                     memory.saveNumberInMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 return 0;
@@ -116,6 +125,8 @@ public class Calculator implements Serializable{
                 try {
                     memory.getNumberFromMemory(s.substring(1).toLowerCase());
                 } catch (Exception ex) {
+                    alert=new AlertError6(s);
+                    alert();
                     return -6;
                 }
                 return 0;
@@ -123,6 +134,8 @@ public class Calculator implements Serializable{
                 try{
                     memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 return 0;
@@ -130,6 +143,8 @@ public class Calculator implements Serializable{
                 try{
                     memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 return 0;
@@ -140,6 +155,8 @@ public class Calculator implements Serializable{
                 try{
                    stack.drop(); 
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 return 0;
@@ -147,6 +164,8 @@ public class Calculator implements Serializable{
                 try{
                    stack.dup(); 
                 } catch(EmptyStackException ex){
+                     alert=new AlertError1(s);
+                     alert();
                     return -1;
                 }
                 return 0;
@@ -154,6 +173,8 @@ public class Calculator implements Serializable{
                 try{
                    stack.swap(); 
                 } catch(EmptyStackException ex){
+                     alert=new AlertError1(s);
+                     alert();
                     return -1;
                 }
                 return 0;
@@ -161,6 +182,8 @@ public class Calculator implements Serializable{
                 try{
                    stack.over(); 
                 } catch(EmptyStackException ex){
+                     alert=new AlertError1(s);
+                     alert();
                     return -1;
                 }
                 return 0;
@@ -169,10 +192,14 @@ public class Calculator implements Serializable{
                 try{
                     op = new CustomOperation(s.split(":")[1].trim());
                 } catch(Exception ex){
+                    alert=new AlertError4(s);
+                    alert();
                     return -4;
                 }
                 String name = s.split(":")[0];
                 if(basicOperations.contains(name) || stackOperations.contains(name)){
+                    alert=new AlertError3(s);
+                    alert();
                     return -3;
                 }
                 ComplexNumber.insertCustomOperation(name, op);
@@ -193,11 +220,15 @@ public class Calculator implements Serializable{
                 String newOp = s.substring(startIndex).split(":")[1].trim();
                 Operation op = ComplexNumber.getOperation(name);
                 if(op == null){
+                    alert=new AlertError5(s);
+                    alert();
                     return -5;
                 }
                 try{
                     op.modify(newOp);
                 } catch(Exception ex){
+                    alert=new AlertError4(s);
+                    alert();
                     return -4;
                 }
                 return 0;
@@ -206,19 +237,25 @@ public class Calculator implements Serializable{
                 String name = s.split(" ")[1];
                 Operation op = ComplexNumber.getOperation(name);
                 if(op == null){
+                    alert=new AlertError5(s);
+                    alert();
                     return -5;
                 }
                 ComplexNumber.deleteCustomOperation(name);
                 return 0;
             } else if(s.matches("save")){
                 memory.saveMemory();
-                this.alertSaveVariables();
+                alert=new AlertSaveVariables(memory.getVariables());
+                alert();
                 return 0;
             } else if(s.matches("restore")){
                 try{
                     memory.restoreMemory();
-                    this.alertRestoreVariables();
+                    alert=new AlertRestoreVariables(memory.getVariables());
+                    alert();
                 } catch(EmptyStackException ex){
+                    alert=new AlertError6(s);
+                    alert();
                     return -6;
                 }
                 return 0;
@@ -227,6 +264,8 @@ public class Calculator implements Serializable{
                 try{
                     c1 = this.stack.pop();
                 } catch(EmptyStackException ex){
+                    alert=new AlertError1(s);
+                    alert();
                     return -1;
                 }
                 switch(s){
@@ -263,6 +302,8 @@ public class Calculator implements Serializable{
                             exp = stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
+                            alert=new AlertError2(s);
+                            alert();
                             return -2;
                         }
                         this.stack.push(c1.power(exp.getRe()));
@@ -274,6 +315,8 @@ public class Calculator implements Serializable{
                 return 0;
             }     
         }
+        alert=new AlertError2(s);
+        alert();
         return -2;
     }
     
@@ -284,21 +327,7 @@ public class Calculator implements Serializable{
     public ComplexStack getComplexStack(){
         return this.stack;
     }
-    
-    /**
-     * Returns the LIFO (last in - first out) representation of the stack.
-     * @return List of ComplexNumber in LIFO order
-     */
-   /* public List<ComplexNumber> getLifoList(){
-       List<ComplexNumber> list=new LinkedList<>();
-       
-       for(ComplexNumber c: stack){
-           list.add(c);
-       }
-       return list;
-    }
-    */
-  
+
 /**
  * This method returns the set of Basic Operation used in our calculator
  * @return set
@@ -310,139 +339,22 @@ public class Calculator implements Serializable{
  * This method returns the set of Stack Operation used in our calculator
  * @return set
  */
-
     public Set<String> getStackOperations() {
         return stackOperations;
     }
-    
     /**
-     * This method prepares the strings that have to be shown when an error occurs
-     * and calls the showAlert method defined in the controller
-     * @param returnValue
-     * @param operation 
+     * This method calls the showAlert method defined in the controller
      */
-    public void alertError(int returnValue,String operation){
-        String customText,customAlert;
-        switch(returnValue){
-            case -2:
-                customAlert="Insert a valid operation";
-                customText="Unsopperted operation for " + operation;
-                break;
-            case -3:
-                customAlert="Insert a valid operation name";
-                customText="You cannot use \"" + operation.split(":")[0] + "\" as custom operation name";
-                break;
-            case -4:
-                customAlert="Insert a valid operation sequence";
-                customText="The operation sequence \"" + operation.split(":")[1] + "\" is invalid";
-                break;
-            case -5:
-                customAlert="There isn't a valid custom operation for the inserted name";
-                customText="The custom operation of \"" + operation.split(":")[1]+"\" is invalid";
-            case -6:
-                customAlert="Save variables first.";
-                customText="There aren't saved variables or the selected variable is empty!";
-                break;
-            default:
-                customAlert="Insert the correct number of elements in the stack";
-                customText="There aren't enough elements in the stack to execute the operation of "+operation;
-                break;
-        }
-        showAlert(Alert.AlertType.ERROR,"Fatal Error",customAlert,customText);
-        }  
-    /**
-     * This method prepares the strings that have to be shown to inform the user about the state of the saving operation
-     * and calls the showAlert method defined in the controller
-     */
-    public void alertSave(){
-        Set<String> op=ComplexNumber.getOperationsNames();
-        if (!op.isEmpty()){
-            String customText="Operation/s Saved";
-            String customAlert="The operation/s of: \n";
-            for(String s: op){
-                customAlert+="- "+s+"\n";
-            }
-        customAlert+="has/have been saved";
-        showAlert(Alert.AlertType.INFORMATION,"Saving Done",customAlert, customText);
-        }
-        else{
-            String customAlert="Define at least one operation!";
-            String customText="There aren't operations that need to be saved!";
-            showAlert(Alert.AlertType.ERROR,"Saving Failed",customAlert,customText);
-        }
-    }
-    /**
-     * This method prepares the strings that have to be shown to inform the user about the state of the reload operation
-     * and calls the showAlert method defined in the controller 
-     */
-    public void alertReload(Set<String> op){
-        if (!op.isEmpty()){
-            String customText="Operation/s Reloaded";
-            String customAlert="The operation/s of: \n";
-            for(String s: op){
-                customAlert+="- "+s+"\n";
-            }
-        customAlert+="has/have been reloaded";
-        showAlert(Alert.AlertType.INFORMATION,"Reloading Done",customAlert, customText);
-        }
-        else{
-            String customAlert="Save at least one operation!";
-            String customText="There aren't operations that need to be reloaded!";
-            showAlert(Alert.AlertType.ERROR,"Reloading Failed",customAlert,customText);
-        }
+    public void alert(){
+        showAlert(alert.getAlertType(),alert.getTitle(),alert.getCustomAlert(),alert.getCustomText());
     }
     
-    /**
-     * This method prepares the strings that have to be shown to inform the user about the delete of all 
-     * custom operations stored in file and calls the showAlert method defined in the controller
-     */
-    public void alertClear(){
-        String customAlert="The operation/s has/have been deleted";
-        String customText="Operation/s Deleted";
-        showAlert(Alert.AlertType.INFORMATION,"Clear Done",customAlert,customText);
+    public AlertStrategy getAlert() {
+        return alert;
+    }
+
+    public void setAlert(AlertStrategy alert) {
+        this.alert = alert;
     }
     
-    /**
-     * This method prepares the strings that have to be shown to inform the user about the state of the saving variables
-     * and calls the showAlert method defined in the controller
-     */
-    public void alertSaveVariables(){
-        HashMap<String, ComplexNumber> v = this.memory.getVariables();
-        if (v!=null){
-            String customText="Variable/s Saved";
-            String customAlert="The variable/s: \n";
-            for(String k: v.keySet()){
-                customAlert+="- "+k+": "+v.get(k)+"\n";
-            }
-        customAlert+="has/have been saved";
-        showAlert(Alert.AlertType.INFORMATION,"Saving Done",customAlert, customText);
-        }
-        else{
-            String customAlert="Error in saving variables!";
-            String customText="It's not possible to save variable/s!";
-            showAlert(Alert.AlertType.ERROR,"Saving Failed",customAlert,customText);
-        }
-    }
-    
-    /**
-     * This method prepares the strings that have to be shown to inform the user about the state of the restoring variables
-     * and calls the showAlert method defined in the controller
-     */
-    public void alertRestoreVariables(){
-        HashMap<String, ComplexNumber> v = this.memory.getVariables();
-        if (v!=null){
-            String customText="Variable/s Restored";
-            String customAlert="The variable/s: \n";
-            for(String k: v.keySet()){
-                customAlert+="- "+k+": "+v.get(k)+"\n";
-            }
-        customAlert+="has/have been restored";
-        showAlert(Alert.AlertType.INFORMATION,"Restoring Done",customAlert, customText);
-        }
-        else{
-            String customAlert="Error in restoring variables!";
-            String customText="It's not possible to restore variable/s!";
-            showAlert(Alert.AlertType.ERROR,"restoring Failed",customAlert,customText);
-        }
-    }
 }
