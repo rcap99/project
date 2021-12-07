@@ -11,11 +11,11 @@ import javafx.scene.control.Alert;
  *
  * @author win10
  */
-public class AlertReload implements AlertStrategy{
+public class AlertReloadFile implements AlertStrategy{
     
     private Set<String> op;
     
-    public AlertReload(Set<String> op) {
+    public AlertReloadFile(Set<String> op) {
         this.op = op;
     }
     

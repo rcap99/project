@@ -25,7 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import projectse.alert.AlertClear;
-import projectse.alert.AlertReload;
+import projectse.alert.AlertReloadFile;
 import projectse.alert.AlertSaveFile;
 import projectse.alert.AlertStrategy;
 
@@ -87,7 +87,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void loadFromFile(ActionEvent event) {
          Set<String> op=ComplexNumber.loadOperations();
-         c.setAlert(new AlertReload(op));
+         c.setAlert(new AlertReloadFile(op));
          c.alert();
     }
 
