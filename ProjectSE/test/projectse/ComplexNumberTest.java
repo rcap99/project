@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @author PRINCIPAL
  */
 public class ComplexNumberTest {
-        Calculator c;
+    Calculator c;
     ComplexNumber n1;
     ComplexNumber n2;
     ComplexNumber n3;
@@ -245,9 +245,21 @@ public class ComplexNumberTest {
     }
     
     @Test
-    public void testArccos(){
-        ComplexNumber z = new ComplexNumber(1.1437177404024204,-1.528570919480998);
-        assertEquals(z, n1.arccos());
+    public void testArcCos(){
+        assertEquals(n1.arcCos(),new ComplexNumber(1.1437177404024204,-1.528570919480998));
+        assertEquals(n2.arcCos(),new ComplexNumber(1.99787491318737274,-1.52857091948099816));
+        assertEquals(n3.arcCos(),new ComplexNumber(0.997688367212106,1.601845863102184));
+        assertEquals(n4.arcCos(),new ComplexNumber(1.570796326794896,-1.443635475178810));
+        assertEquals(n5.arcCos(),new ComplexNumber(0,0));
+    }
+    
+    @Test
+    public void testArcSin(){
+        assertEquals(n1.arcSin(),new ComplexNumber(0.4270785863924761,1.5285709194809981));
+        assertEquals(n2.arcSin(),new ComplexNumber(-0.4270785863924761,1.5285709194809981));
+        assertEquals(n3.arcSin(),new ComplexNumber(0.5731079595827903,-1.6018458631021845));
+        assertEquals(n4.arcSin(),new ComplexNumber(0,1.4436354751788103));
+        assertEquals(n5.arcSin(),new ComplexNumber(1.5707963267948966,0));
     }
 
     
