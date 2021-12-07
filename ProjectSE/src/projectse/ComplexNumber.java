@@ -228,13 +228,8 @@ public class ComplexNumber implements Serializable{
             return false;
         }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Double.doubleToLongBits(this.re) != Double.doubleToLongBits(other.re)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.im) != Double.doubleToLongBits(other.im)) {
-            return false;
-        }
-        return true;
+        final Double epsilon = 1E-8;
+        return Math.abs(this.re - other.re)<=epsilon && Math.abs(this.im - other.im)<=epsilon;
     }
     
     /**
