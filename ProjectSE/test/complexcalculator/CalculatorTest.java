@@ -121,7 +121,7 @@ public class CalculatorTest {
         assertEquals(stack1, c2.getComplexStack());
     }
     
-    @Test(expected=ExceptionInInitializerError.class)
+    @Test
     public void testExecuteVariablesOperations(){
         ComplexStack stack1=c1.getComplexStack();
         stack1.push(n1);
