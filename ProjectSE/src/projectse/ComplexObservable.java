@@ -8,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- *
+ * Concrete implementation of {@link ObservableInterface}.
  * @author Group11
  */
 public class ComplexObservable extends Observable implements ObservableInterface{

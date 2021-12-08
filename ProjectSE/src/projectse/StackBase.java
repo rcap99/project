@@ -18,6 +18,9 @@ import java.util.function.UnaryOperator;
 public class StackBase extends Stack<ComplexNumber> implements ObservableInterface{
     private ObservableInterface co;
     
+    /**
+     *
+     */
     public StackBase() {
         super();
         co=new ComplexObservable();
@@ -203,48 +206,80 @@ public class StackBase extends Stack<ComplexNumber> implements ObservableInterfa
         
     }
     
-   
-
+    /**
+     * Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.
+     * @param o an observer to be added.
+     */
     @Override
     public void addObserver(Observer o) {
         co.addObserver(o);
     }
 
+    /**
+     * Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.
+     * This method is called automatically by the notifyObservers methods.
+     * 
+     */
     @Override
     public void clearChanged() {
         co.clearChanged();
     }
 
+    /**
+     * Returns the number of observers of this Observable object.
+     * @return the number of observers of this object.
+     */
     @Override
     public int countObservers() {
         return co.countObservers();
     }
 
+    /**
+     * Deletes an observer from the set of observers of this object. Passing null to this method will have no effect.
+     * @param o the observer to be deleted.
+     */
     @Override
     public void deleteObserver(Observer o) {
         co.deleteObserver(o);
     }
 
+    /**
+     * Clears the observer list so that this object no longer has any observers.
+     */
     @Override
     public void deleteObservers() {
         co.deleteObservers();
     }
 
+    /**
+     * Tests if this object has changed.
+     * @return true if and only if the setChanged method has been called more recently than the clearChanged method on this object; false otherwise.
+     */
     @Override
     public boolean hasChanged() {
         return co.hasChanged();
     }
 
+    /**
+     * If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
+     */
     @Override
     public void notifyObservers() {
         co.notifyObservers();
     }
 
+    /**
+     * If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
+     * @param arg any object
+     */
     @Override
     public void notifyObservers(Object arg) {
         co.notifyObservers(arg);
     }
 
+    /**
+     * Marks this Observable object as having been changed; the hasChanged method will now return true.
+     */
     @Override
     public void setChanged() {
         co.setChanged();
