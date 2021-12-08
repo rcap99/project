@@ -8,10 +8,10 @@ import java.util.Set;
 import javafx.scene.control.Alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in the reloadFile operation
+ * @author Group 11
  */
-public class AlertReloadFile implements AlertStrategy{
+public class AlertReloadFile implements AlertBase{
     
     private Set<String> op;
     

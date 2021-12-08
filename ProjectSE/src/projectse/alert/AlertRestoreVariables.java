@@ -9,10 +9,10 @@ import javafx.scene.control.Alert;
 import projectse.ComplexNumber;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in restoring the variables
+ * @author Group 11
  */
-public class AlertRestoreVariables implements AlertStrategy{
+public class AlertRestoreVariables implements AlertBase{
 
     private HashMap<String, ComplexNumber> v;
 

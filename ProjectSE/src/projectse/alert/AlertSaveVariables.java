@@ -9,10 +9,10 @@ import javafx.scene.control.Alert;
 import projectse.ComplexNumber;
 
 /**
- *
- * @author win10
+ * This class creates an object used when saving the variables 
+ * @author Group 11
  */
-public class AlertSaveVariables implements AlertStrategy{
+public class AlertSaveVariables implements AlertBase{
     private HashMap<String, ComplexNumber> v;
 
     public AlertSaveVariables(HashMap<String, ComplexNumber> v) {

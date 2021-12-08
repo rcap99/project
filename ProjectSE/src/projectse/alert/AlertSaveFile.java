@@ -9,10 +9,10 @@ import javafx.scene.control.Alert;
 import projectse.ComplexNumber;
 
 /**
- *
- * @author win10
+ * This class creates an object used when saving the operations
+ * @author Group 11
  */
-public class AlertSaveFile implements AlertStrategy{
+public class AlertSaveFile implements AlertBase{
     
     private Set<String> op=ComplexNumber.getOperationsNames();
     

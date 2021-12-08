@@ -5,23 +5,23 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in using the variables
+ * @author Group 11
  */
-public class AlertError4 extends AlertError{
+public class AlertEmptyVariables extends AlertError{
 
-    public AlertError4(String operation) {
+    public AlertEmptyVariables(String operation) {
         super(operation);
     }
 
     @Override
     public String getCustomAlert() {
-        return "Insert a valid operation sequence";
+        return "Save variables first.";
     }
 
     @Override
     public String getCustomText() {
-        return "The operation sequence \"" + getOperation().split(":")[1] + "\" is invalid";
+        return "There aren't saved variables or the selected variable is empty!";
     }
     
 }

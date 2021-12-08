@@ -25,7 +25,7 @@ public class Calculator implements Serializable{
     private final Set<String> trascendentalOperations;
     private ComplexStack stack;
     private Memory memory;
-    private AlertStrategy alert;
+    private AlertBase alert;
     
     /**
      *  Default constructor for Calculator that creates empty {@link ComplexStack} and {@link Memory} objects.
@@ -56,7 +56,7 @@ public class Calculator implements Serializable{
                 try{
                     c1 = this.stack.pop();
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -66,7 +66,7 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
-                            alert=new AlertError1(s);
+                            alert=new AlertNumberElements(s);
                             alert();
                             return -1;
                         }    
@@ -77,7 +77,7 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
-                            alert=new AlertError1(s);
+                            alert=new AlertNumberElements(s);
                             alert();
                             return -1;
                         }
@@ -88,7 +88,7 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
-                            alert=new AlertError1(s);
+                            alert=new AlertNumberElements(s);
                             alert();
                             return -1;
                         }
@@ -99,7 +99,7 @@ public class Calculator implements Serializable{
                             c2 = this.stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
-                            alert=new AlertError1(s);
+                            alert=new AlertNumberElements(s);
                             alert();
                             return -1;
                         }
@@ -116,7 +116,7 @@ public class Calculator implements Serializable{
                 try{
                     memory.saveNumberInMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -125,16 +125,16 @@ public class Calculator implements Serializable{
                 try {
                     memory.getNumberFromMemory(s.substring(1).toLowerCase());
                 } catch (Exception ex) {
-                    alert=new AlertError6(s);
+                    alert=new AlertEmptyVariables(s);
                     alert();
-                    return -6;
+                    return -1;
                 }
                 return 0;
             } else if(s.matches("\\+[a-zA-Z]")){
                 try{
                     memory.incrementNumberFromMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -143,7 +143,7 @@ public class Calculator implements Serializable{
                 try{
                     memory.decrementNumberFromMemory(s.substring(1).toLowerCase());
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -155,7 +155,7 @@ public class Calculator implements Serializable{
                 try{
                    stack.drop(); 
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -164,7 +164,7 @@ public class Calculator implements Serializable{
                 try{
                    stack.dup(); 
                 } catch(EmptyStackException ex){
-                     alert=new AlertError1(s);
+                     alert=new AlertNumberElements(s);
                      alert();
                     return -1;
                 }
@@ -173,7 +173,7 @@ public class Calculator implements Serializable{
                 try{
                    stack.swap(); 
                 } catch(EmptyStackException ex){
-                     alert=new AlertError1(s);
+                     alert=new AlertNumberElements(s);
                      alert();
                     return -1;
                 }
@@ -182,7 +182,7 @@ public class Calculator implements Serializable{
                 try{
                    stack.over(); 
                 } catch(EmptyStackException ex){
-                     alert=new AlertError1(s);
+                     alert=new AlertNumberElements(s);
                      alert();
                     return -1;
                 }
@@ -192,15 +192,15 @@ public class Calculator implements Serializable{
                 try{
                     op = new CustomOperation(s.split(":")[1].trim());
                 } catch(Exception ex){
-                    alert=new AlertError4(s);
+                    alert=new AlertInvalidOperationSequence(s);
                     alert();
-                    return -4;
+                    return -1;
                 }
                 String name = s.split(":")[0];
                 if(basicOperations.contains(name) || stackOperations.contains(name)){
-                    alert=new AlertError3(s);
+                    alert=new AlertOperationName(s);
                     alert();
-                    return -3;
+                    return -1;
                 }
                 ComplexNumber.insertCustomOperation(name, op);
                 return 0;
@@ -220,16 +220,16 @@ public class Calculator implements Serializable{
                 String newOp = s.substring(startIndex).split(":")[1].trim();
                 Operation op = ComplexNumber.getOperation(name);
                 if(op == null){
-                    alert=new AlertError5(s);
+                    alert=new AlertUnsupportedOperationName(s);
                     alert();
-                    return -5;
+                    return -1;
                 }
                 try{
                     op.modify(newOp);
                 } catch(Exception ex){
-                    alert=new AlertError4(s);
+                    alert=new AlertInvalidOperationSequence(s);
                     alert();
-                    return -4;
+                    return -1;
                 }
                 return 0;
             }
@@ -237,9 +237,9 @@ public class Calculator implements Serializable{
                 String name = s.split(" ")[1];
                 Operation op = ComplexNumber.getOperation(name);
                 if(op == null){
-                    alert=new AlertError5(s);
+                    alert=new AlertUnsupportedOperationName(s);
                     alert();
-                    return -5;
+                    return -1;
                 }
                 ComplexNumber.deleteCustomOperation(name);
                 return 0;
@@ -254,9 +254,9 @@ public class Calculator implements Serializable{
                     alert=new AlertRestoreVariables(memory.getVariables());
                     alert();
                 } catch(EmptyStackException ex){
-                    alert=new AlertError6(s);
+                    alert=new AlertEmptyVariables(s);
                     alert();
-                    return -6;
+                    return -1;
                 }
                 return 0;
             }
@@ -264,7 +264,7 @@ public class Calculator implements Serializable{
                 try{
                     c1 = this.stack.pop();
                 } catch(EmptyStackException ex){
-                    alert=new AlertError1(s);
+                    alert=new AlertNumberElements(s);
                     alert();
                     return -1;
                 }
@@ -302,9 +302,9 @@ public class Calculator implements Serializable{
                             exp = stack.pop();
                         } catch(EmptyStackException ex){
                             stack.push(c1);
-                            alert=new AlertError2(s);
+                            alert=new AlertInvalidOperation(s);
                             alert();
-                            return -2;
+                            return -1;
                         }
                         this.stack.push(c1.power(exp.getRe()));
                         break;
@@ -315,9 +315,9 @@ public class Calculator implements Serializable{
                 return 0;
             }     
         }
-        alert=new AlertError2(s);
+        alert=new AlertInvalidOperation(s);
         alert();
-        return -2;
+        return -1;
     }
     
     /**
@@ -348,12 +348,18 @@ public class Calculator implements Serializable{
     public void alert(){
         showAlert(alert.getAlertType(),alert.getTitle(),alert.getCustomAlert(),alert.getCustomText());
     }
-    
-    public AlertStrategy getAlert() {
+    /**
+     * This method gets the AlertBase object used in this calculator
+     * @return AlertBase object
+     */
+    public AlertBase getAlert() {
         return alert;
     }
-
-    public void setAlert(AlertStrategy alert) {
+    /**This method mofies the AlertBase object used in this calculator
+     * 
+     * @param alert the new AlertBase object
+     */
+    public void setAlert(AlertBase alert) {
         this.alert = alert;
     }
     

@@ -5,12 +5,12 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in the number of elements in the stack
+ * @author Group 11
  */
-public class AlertError1 extends AlertError {
+public class AlertNumberElements extends AlertError {
 
-    public AlertError1(String operation) {
+    public AlertNumberElements(String operation) {
         super(operation);
     }
 

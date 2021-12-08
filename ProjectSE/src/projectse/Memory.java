@@ -44,6 +44,7 @@ public class Memory implements Serializable{
     /**
      * Pushes the value of the variable onto the stack
      * @param name represent the key of element to push
+     * @throws Exception if there arent't saved variables or there isn't a variable for the specified name
      * 
      */
     public void getNumberFromMemory(String name) throws Exception{
@@ -109,7 +110,7 @@ public class Memory implements Serializable{
     }
     /**
      * Returns the stack of variables
-     * @return 
+     * @return a Stack of HashMap objects
      */
     public Stack<HashMap<String, ComplexNumber>> getVariablesStack() {
         return variablesStack;

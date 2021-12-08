@@ -5,23 +5,23 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in the operation sequence
+ * @author Group 11
  */
-public class AlertError2 extends AlertError{
+public class AlertInvalidOperationSequence extends AlertError{
 
-    public AlertError2(String operation) {
+    public AlertInvalidOperationSequence(String operation) {
         super(operation);
     }
 
     @Override
     public String getCustomAlert() {
-        return "Insert a valid operation";
+        return "Insert a valid operation sequence";
     }
 
     @Override
     public String getCustomText() {
-        return "Unsopperted operation for " + getOperation();
+        return "The operation sequence \"" + getOperation().split(":")[1] + "\" is invalid";
     }
     
 }

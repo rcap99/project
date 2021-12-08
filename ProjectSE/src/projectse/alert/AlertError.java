@@ -7,10 +7,10 @@ package projectse.alert;
 import javafx.scene.control.Alert;
 
 /**
- *
- * @author win10
+ * This is an abstract class that implements some common method used for the other alert objects
+ * @author Group 11
  */
-public abstract class AlertError implements AlertStrategy{
+public abstract class AlertError implements AlertBase{
     private String operation; 
     
     public AlertError(String operation) {

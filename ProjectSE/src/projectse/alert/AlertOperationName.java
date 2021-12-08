@@ -5,23 +5,23 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in the operation name
+ * @author Group 11
  */
-public class AlertError5 extends AlertError{
+public class AlertOperationName extends AlertError{
 
-    public AlertError5(String operation) {
+    public AlertOperationName(String operation) {
         super(operation);
     }
 
     @Override
     public String getCustomAlert() {
-        return "There isn't a valid custom operation for the inserted name";
+        return "Insert a valid operation name";
     }
 
     @Override
     public String getCustomText() {
-        return "The custom operation of \"" + getOperation().split(":")[1]+"\" is invalid";
+        return "You cannot use \"" + getOperation().split(":")[0] + "\" as custom operation name";
     }
     
 }

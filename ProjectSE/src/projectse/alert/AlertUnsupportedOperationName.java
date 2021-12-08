@@ -5,23 +5,23 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of invalid operation name
+ * @author Group 11
  */
-public class AlertError6 extends AlertError{
+public class AlertUnsupportedOperationName extends AlertError{
 
-    public AlertError6(String operation) {
+    public AlertUnsupportedOperationName(String operation) {
         super(operation);
     }
 
     @Override
     public String getCustomAlert() {
-        return "Save variables first.";
+        return "There isn't a valid custom operation for the inserted name";
     }
 
     @Override
     public String getCustomText() {
-        return "There aren't saved variables or the selected variable is empty!";
+        return "The custom operation of \"" + getOperation().split(":")[1]+"\" is invalid";
     }
     
 }

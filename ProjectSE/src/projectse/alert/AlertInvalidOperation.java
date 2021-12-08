@@ -5,23 +5,24 @@
 package projectse.alert;
 
 /**
- *
- * @author win10
+ * This class creates an object used in case of error in using the operations
+ * @author Group 11
  */
-public class AlertError3 extends AlertError{
 
-    public AlertError3(String operation) {
+public class AlertInvalidOperation extends AlertError{
+
+    public AlertInvalidOperation(String operation) {
         super(operation);
     }
 
     @Override
     public String getCustomAlert() {
-        return "Insert a valid operation name";
+        return "Insert a valid operation";
     }
 
     @Override
     public String getCustomText() {
-        return "You cannot use \"" + getOperation().split(":")[0] + "\" as custom operation name";
+        return "Unsopperted operation for " + getOperation();
     }
     
 }
