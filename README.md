@@ -19,8 +19,8 @@ clear deletes all the elements in the stack
 over implements the insertion of a copy of second last element
 drop deletes the last inserted element
 ###Memory Operations: (the variables go from a to z)
->var implements the saving of the number on the top of the stack in the variable "var"
-<var implements the insertion of the number in the variable "var" on the top of the stack
+\>var implements the saving of the number on the top of the stack in the variable "var"
+\<var implements the insertion of the number in the variable "var" on the top of the stack
 +var implements the incrementation of the number in the variable "var" with the element on the top of the stack
 -var implements the decrementation of the number in the variable "var" with the element on the top of the stack
 save implements the saving of the variables from memory to a variables stack
