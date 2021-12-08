@@ -21,8 +21,9 @@ public class CustomOperation implements Operation,Serializable{
     private List<String> operations;
     private final Set<String> basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));
     private final Set<String> stackOperations = new HashSet<>(Arrays.asList("dup", "swap", "clear", "over", "drop"));
-    private final Set<String> variablesOperations = new HashSet<>(Arrays.asList(">[a-zA-Z]", "<[a-zA-Z]", "save", "restore", "+[a-zA-Z]", "-[a-zA-Z]"));
+    private final Set<String> variablesOperations = new HashSet<>(Arrays.asList("\\s*>[a-zA-Z]", "\\s*<[a-zA-Z]", "save", "restore", "\\s*+[a-zA-Z]", "\\s*-[a-zA-Z]"));
     private final String patternComplex = "(([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)|([-+]?\\d+\\.?\\d*)|([-+]?\\d*\\.?\\d+)([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i)|([-+]?\\d+\\.?\\d*|[-+]?\\d*\\.?\\d+)i";
+    private final Set<String> trascendentalOperations = new HashSet<>(Arrays.asList("mod", "arg", "sin", "cos", "tan", "asin", "acos", "atan", "pow", "log", "exp"));
     
     /**
      * Constructor of class {@link CustomOperation}, it create an instance of class LinkedList included in {@link java.util} library
@@ -54,7 +55,7 @@ public class CustomOperation implements Operation,Serializable{
      */
     public int check(){
         for(String s:operations){
-            if(!basicOperations.contains(s) && !stackOperations.contains(s) && !ComplexNumber.getOperationsNames().contains(s) && !s.matches(patternComplex)){
+            if(!basicOperations.contains(s) && !stackOperations.contains(s) && !ComplexNumber.getOperationsNames().contains(s) && !s.matches(patternComplex) && !trascendentalOperations.contains(s)){
                 for(String x: variablesOperations)
                     if(s.matches(x))
                         return 0;
