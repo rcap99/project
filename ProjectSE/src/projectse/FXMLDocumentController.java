@@ -41,7 +41,7 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem clear;
     
     /**
-     * initialize the calculator
+     * Initialize the calculator
      * @param url
      * @param rb 
      */
