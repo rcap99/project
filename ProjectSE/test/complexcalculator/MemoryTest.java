@@ -4,7 +4,7 @@
  */
 package complexcalculator;
 import complexcalculator.ComplexNumber;
-import complexcalculator.ComplexStack;
+import complexcalculator.stack.ComplexStack;
 import complexcalculator.Memory;
 import java.util.HashMap;
 import java.util.Map.Entry;

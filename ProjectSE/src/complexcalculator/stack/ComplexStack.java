@@ -3,8 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package complexcalculator;
+package complexcalculator.stack;
 
+import complexcalculator.ComplexNumber;
+import complexcalculator.stack.ObservableInterface;
+import complexcalculator.stack.ComplexObservable;
 import java.util.ConcurrentModificationException;
 import java.util.EmptyStackException;
 import java.util.Iterator;

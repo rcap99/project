@@ -4,7 +4,7 @@
  */
 package complexcalculator;
 
-import complexcalculator.CustomOperation;
+import complexcalculator.operation.CustomOperation;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.*;

@@ -4,6 +4,9 @@
  */
 package complexcalculator;
 
+import complexcalculator.operation.Operation;
+import complexcalculator.operation.CustomOperation;
+import complexcalculator.stack.ComplexStack;
 import complexcalculator.alert.AlertEmptyVariables;
 import complexcalculator.alert.AlertRestoreVariables;
 import complexcalculator.alert.AlertOperationName;

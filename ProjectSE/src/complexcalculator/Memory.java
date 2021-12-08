@@ -4,6 +4,7 @@
  */
 package complexcalculator;
 
+import complexcalculator.stack.ComplexStack;
 import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.HashMap;

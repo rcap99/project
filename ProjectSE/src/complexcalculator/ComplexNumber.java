@@ -1,5 +1,6 @@
 package complexcalculator;
 
+import complexcalculator.operation.Operation;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;

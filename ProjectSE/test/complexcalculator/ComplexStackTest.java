@@ -5,7 +5,7 @@
 package complexcalculator;
 
 import complexcalculator.ComplexNumber;
-import complexcalculator.ComplexStack;
+import complexcalculator.stack.ComplexStack;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
