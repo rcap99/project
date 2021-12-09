@@ -3,7 +3,7 @@ package complexcalculator.stack;
 import java.util.Observer;
 
 /**
- *
+ * This interface provides the signature for the methods of the {@link java.util.Observable} class
  * @author Group11
  */
 public interface ObservableInterface {
