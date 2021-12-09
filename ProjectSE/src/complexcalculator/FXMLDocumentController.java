@@ -22,7 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * This class defines the view part (The GUI) of a JavaFX application
+ * This class defines the Controller who comunicates with the view and the calculator (model)
  * @author Group11
  */
 public class FXMLDocumentController implements Initializable {
