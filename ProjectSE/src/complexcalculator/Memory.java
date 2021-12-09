@@ -40,7 +40,7 @@ public class Memory{
     /**
      * Pushes the value of the variable onto the stack
      * @param name represent the key of element to push
-     * @throws Exception if there arent't saved variables or there isn't a variable for the specified name
+     * @throws Exception if there are not saved variables or there isn't a variable for the specified name
      * 
      */
     public void getNumberFromMemory(String name) throws Exception{
@@ -61,8 +61,10 @@ public class Memory{
         if (stack.isEmpty()){
             throw new EmptyStackException();
         }
-        if(!variables.containsKey(name))
-            this.saveNumberInMemory(name);
+        if(!variables.containsKey(name)){
+            saveNumberInMemory(name);
+            return;
+        }
         ComplexNumber temp = variables.get(name).add(stack.pop());
         variables.remove(name);
         variables.put(name, temp);
@@ -77,8 +79,11 @@ public class Memory{
         if (stack.isEmpty()){
             throw new EmptyStackException();
         }
-        if(!variables.containsKey(name))
-            this.saveNumberInMemory(name);
+        if(!variables.containsKey(name)){
+            stack.push(stack.pop().invertSign());
+            saveNumberInMemory(name);
+            return;
+        }
         ComplexNumber temp = variables.get(name).subtract(stack.pop());
         variables.remove(name);
         variables.put(name, temp);
