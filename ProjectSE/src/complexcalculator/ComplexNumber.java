@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 
 
-public class ComplexNumber implements Serializable{  
+public class ComplexNumber{  
      private double re;   // the real part
      private double im;   // the imaginary part
      

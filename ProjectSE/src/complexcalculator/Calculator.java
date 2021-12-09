@@ -1,22 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package complexcalculator;
 
-import complexcalculator.operation.Operation;
-import complexcalculator.operation.CustomOperation;
+import complexcalculator.operation.*;
 import complexcalculator.stack.ComplexStack;
-import complexcalculator.alert.AlertEmptyVariables;
-import complexcalculator.alert.AlertRestoreVariables;
-import complexcalculator.alert.AlertOperationName;
-import complexcalculator.alert.AlertSaveVariables;
-import complexcalculator.alert.AlertNumberElements;
-import complexcalculator.alert.AlertBase;
-import complexcalculator.alert.AlertInvalidOperationSequence;
-import complexcalculator.alert.AlertUnsupportedOperationName;
-import complexcalculator.alert.AlertInvalidOperation;
-import java.io.Serializable;
+import complexcalculator.alert.*;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.HashSet;
@@ -30,7 +16,7 @@ import static complexcalculator.FXMLDocumentController.showAlert;
  * 
  * @author Group11
  */
-public class Calculator implements Serializable{
+public class Calculator{
     private final Set<String> basicOperations = new HashSet<>(Arrays.asList("+","-","*","/","sqrt","+-"));;
     private final Set<String> stackOperations = new HashSet<>(Arrays.asList("dup", "swap", "clear", "over", "drop"));
     private final Set<String> trascendentalOperations = new HashSet<>(Arrays.asList("mod", "arg", "sin", "cos", "tan", "asin", "acos", "atan", "pow", "log", "exp"));
@@ -65,7 +51,7 @@ public class Calculator implements Serializable{
         if(stackOperations.contains(s)){
             return executeStackOperation(s);
         } 
-        else if(trascendentalOperations.contains(s)){
+        if(trascendentalOperations.contains(s)){
             return executeTrascendentalOperation(s);
         }
         int returnValueVariables = executeVariablesOperation(s);
@@ -231,7 +217,7 @@ public class Calculator implements Serializable{
     private int executeTrascendentalOperation(String s){
         ComplexNumber c1;
         try{
-            c1 = this.stack.pop();
+            c1 = stack.pop();
         } catch(EmptyStackException ex){
             alert=new AlertNumberElements(s);
             alert();
@@ -242,28 +228,28 @@ public class Calculator implements Serializable{
                 stack.push(new ComplexNumber(c1.abs(), 0));
                 break;
             case "arg":
-                this.stack.push(new ComplexNumber(c1.phase(), 0));
+                stack.push(new ComplexNumber(c1.phase(), 0));
                 break;
             case "sin":
-                this.stack.push(c1.sin());
+                stack.push(c1.sin());
                 break;
             case "cos":
-                this.stack.push(c1.cos());
+                stack.push(c1.cos());
                 break;
             case "tan":
-                this.stack.push(c1.tan());
+                stack.push(c1.tan());
                 break;
             case "asin":
-                this.stack.push(c1.arcSin());
+                stack.push(c1.arcSin());
                 break;
             case "acos":
-                this.stack.push(c1.arcCos());
+                stack.push(c1.arcCos());
                 break;
             case "atan":
-                this.stack.push(c1.arcTan());
+                stack.push(c1.arcTan());
                 break;
             case "log":
-                this.stack.push(c1.logarithm());
+                stack.push(c1.logarithm());
                 break;
             case "pow":
                 ComplexNumber exp;

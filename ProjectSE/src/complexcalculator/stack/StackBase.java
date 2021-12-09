@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package complexcalculator.stack;
 
 import complexcalculator.ComplexNumber;
-import complexcalculator.stack.ObservableInterface;
-import complexcalculator.stack.ComplexObservable;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Observer;

@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package complexcalculator;
 
 import complexcalculator.stack.ComplexStack;
-import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
@@ -14,7 +9,7 @@ import java.util.Stack;
  * Represents the memory where to store the values ​​of the variables 
  * 
  */
-public class Memory implements Serializable{
+public class Memory{
     private HashMap<String, ComplexNumber> variables;
     private ComplexStack stack;
     private Stack<HashMap<String,ComplexNumber>> variablesStack;
@@ -24,7 +19,7 @@ public class Memory implements Serializable{
      * @param stack represents the complex stack associated with the memory
      */
     public Memory(ComplexStack stack) {
-        this.variables = new HashMap<>();
+        variables = new HashMap<>();
         this.stack = stack;
         variablesStack=new Stack<>();
     }
